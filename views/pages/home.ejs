@@ -1,0 +1,38 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <div class = "home-page">
+        <h2 class = "home-heading">Welcome To EduX</h2>
+        <p>Centralized Smart E-learning Platform</p>
+    </div>
+    <h4 class = "home-text">Explore Our Featured Courses</h4>
+    <div class = "container">
+      <%for(let course of courses){%>
+        <div class="card" style="width: 18rem;">
+            <img src="<%=course.image%>" class="card-img-top" alt="image">
+            <div class="card-body">
+              <h5 class="card-title"><%=course.title%></h5>
+              <p class="card-text">Tutor : <a href="https://www.youtube.com/@KunalKushwaha" class = "tutor"><%=course.tutor%></a><br><i class="fa-solid fa-star"></i> <%=course.rating%></p>
+              <a href="/show/<%=course._id%>" class="btn btn-primary">Explore</a>
+            </div>
+        </div>
+      <%}%>
+        <!-- <div class="card" style="width: 18rem;">
+            <img src="https://i.ytimg.com/vi/l1EssrLxt7E/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBeHsL0IAwmp4nDP4YTVkzvG9Z2OA" class="card-img-top" alt="image">
+            <div class="card-body">
+              <h5 class="card-title">Web Development Course</h5>
+              <p class="card-text">Tutor : <a href="https://www.youtube.com/@ApnaCollegeOfficial" class = "tutor">Apna College</a><br><i class="fa-solid fa-star"></i> 4.2</p>
+              <a href="/" class="btn btn-primary">Explore</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img src="https://i.ytimg.com/vi/QXeEoD0pB3E/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDFfxTTv31qjpdalu6WVYgDswHgcg" class="card-img-top" alt="image">
+            <div class="card-body">
+              <h5 class="card-title">
+                Python for Beginners</h5>
+              <p class="card-text">Tutor : <a href="https://www.youtube.com/@Telusko" class = "tutor">Telusko</a><br><i class="fa-solid fa-star"></i> 4.5</p>
+              
+              <a href="/" class="btn btn-primary">Explore</a>
+            </div>
+        </div> -->
+    </div>
+</body>

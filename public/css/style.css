@@ -1,0 +1,261 @@
+body{
+    height: 100%;
+    overflow: auto;
+}
+
+.navbar{
+    height : 5rem;
+    background-color: white;
+}
+.fa-compass{
+    color : #fe424d;
+    font-size : 3rem;
+}
+.nav-link{
+    color : #222222 !important;
+    font-weight: 500 !important;
+    margin-right : 2rem;
+}
+.nav-link:hover{
+    color : red !important;
+}
+.f-info-links a{
+    text-decoration: none;
+    color : #222222;
+    margin-right : 0.5rem;
+}
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+.f-info{
+    text-align: center;
+    display :flex;
+    height : 8rem;
+    background-color: #ebebeb;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items : space-evenly;
+}
+.f-info-links, .f-info-brand{
+    width : 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.f-info-socials{
+    width : 100%;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.f-info-socials i{
+    margin-right : 0.8rem;
+}
+
+.navbar-brand{
+    display: flex;
+    width: 30%;
+}
+
+.f-info{
+    position:relative;
+    bottom:0px;
+    width:100%;
+}
+.navbar-collapse.show {
+    background-color: #f8f9fa; /* Change to the desired color */
+}
+
+.form-control{
+    border: 2px solid rgba(20, 20, 21, 0.5) !important;
+}
+
+.x-color{
+    color : red;
+}
+.logo-name{
+    font-size: 2.5rem;
+    margin-left: 0.5rem;
+}
+.home-page{
+    background-color: bisque;
+    width : 100%;
+    height : 25rem;
+    text-align: center;
+    padding : 1.5rem;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.home-page p{
+    font-weight: 600;
+}
+.home-heading{
+    padding-top: 7.5rem;
+}
+.home-text{
+    text-align: center;
+    padding: 1.5rem;
+}
+.container{
+    margin-bottom: 4rem;
+    margin-top : 2rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+}
+.btn-primary{
+    font-weight: 500;
+}
+.tutor{
+    text-decoration: none;
+    color : gray;
+    font-weight: 500;
+    font-style: italic;
+}
+.card{
+    margin: auto;
+    margin: 1rem;
+    /* height: 22rem; */
+    margin-top : 0;
+}
+.card:hover{
+    .card-img-top{
+        opacity: 0.7;
+    }
+}
+.fa-star{
+    color : gold;
+}
+.chatbot {
+    position: fixed;
+    right : 1rem; 
+    bottom: 1.5rem; 
+    z-index: 1000; 
+    cursor: pointer;
+
+}
+.fa-rocketchat{
+    font-size: 3rem;
+    color :slateblue;
+}
+.course-container{
+    margin : 1rem;
+    padding : 1rem;   
+    /* border: 0.2rem solid gray;  */
+}
+.course-img{
+    height : 20rem;
+    border-radius: 1rem;
+    margin-bottom: 0.5rem;
+}
+.chapter{
+    margin : 1.5rem;
+}
+.chapter-name{
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+.lecture{
+    padding : 1rem;
+}
+.btn-success{
+    font-weight: 500;
+}
+.btn-warning{
+    font-weight : 500;
+    margin-left : 2rem;
+}
+.chapter-logic{
+    width : 40rem;
+    border: 0.15rem solid rgb(116, 113, 113);
+    padding : 0.5rem;
+    border-radius: 1rem;
+    padding-left : 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    padding-right : 1.5rem;
+}
+.fa-angle-up{
+    text-decoration : none;
+    color : black;
+    padding : 0.5rem;
+    border: 0.1rem solid gray;
+    border-radius: 1rem;
+}
+.fa-angle-down{
+    text-decoration : none;
+    color : black;
+    padding : 0.5rem;
+    border: 0.1rem solid gray;
+    border-radius: 1rem;
+}
+.fa-angle-down:hover{
+    color : red;
+}
+.fa-angle-up:hover{
+    color : red;
+}
+.notes{
+    position: fixed;
+    right : 2rem;
+    z-index: 1000;
+    bottom : 4rem;
+}
+.notedown{
+    height : 22rem;
+    width : 30rem;
+    padding : 1rem;
+    border-radius : 1rem;
+    background-color: #222222;
+    color : white;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.2rem;
+
+}
+.notedown::placeholder{
+    font-weight: 400;
+    color : white;
+}
+.notes .btn-success{
+    margin-top : 0.5rem;
+    margin-left : 1rem;
+    text-align: left;
+}
+.chapter{
+    display: inline-block;
+    margin: auto;
+}
+.fa-user{
+    font-size: 2rem;
+    padding-right : 1rem;
+    text-decoration: none;
+    color :#222222;
+}
+.fa-user:hover{
+    color : red;
+}
+.navbar-nav{
+    width : 100%;
+    display: flex;
+    align-items: center;
+    right : 1rem !important;
+    justify-content:right;
+}
+.login-container{
+    padding : 2rem;
+    width : 40%;
+    margin: auto;
+    border: 0.1rem solid rgb(74, 73, 73);
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    border-radius: 1rem;
+
+}
+.login-btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
