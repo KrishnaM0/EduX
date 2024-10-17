@@ -219,10 +219,12 @@ body{
     font-weight: 400;
     color : white;
 }
-.notes .btn-success{
+.notes-btns .btn-success, .btn-danger{
     margin-top : 0.5rem;
     margin-left : 1rem;
+    margin-right : 1.2rem;
     text-align: left;
+    font-weight: 500;
 }
 .chapter{
     display: inline-block;
@@ -259,3 +261,74 @@ body{
     align-items: center;
     justify-content: space-between;
 }
+.notes-btns{
+    display: flex;
+    align-items: center;
+}
+.quizdiv{
+    width : 80%;
+    height : 20rem;
+    border: 0.05rem solid gray;
+    margin: 2rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+.quiz-btns{
+    margin-top: 1.3rem;   
+    display: flex;
+    align-items: center; 
+    margin-left : 1.2rem;
+
+}
+.quiz-btns button{
+    margin-left: 0;
+    margin-top: 0;
+    margin-right : 2rem;
+}
+.option{
+    padding-left : 1.2rem;
+    margin-top : 0.3rem;
+}
+.dashboard-container{
+    margin : 1rem;
+    padding : 1rem;
+}
+.card-body a{
+    text-decoration: none;
+    color : gray;
+    font-weight: 500;
+}
+.enrolled{
+    border-right : 0.15rem solid grey;
+    width : 50%;
+}
+.profile img{
+    width : 13rem;
+    height : 13rem;
+    border-radius: 40%;
+}
+.profile{
+    text-align: center;
+    margin-right : 2rem;
+}
+.user-enrolled{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.user-links a{
+    font-size: 1.5rem;
+    margin-right : 1rem;
+    text-decoration: none;
+    color : black;
+    font-weight: 500;
+}
+.card-body .btn-primary{
+    color : white;
+}
+.evaluation{
+    display: flex;
+    justify-content: space-around;
+    margin-top : 2rem;
+}
+

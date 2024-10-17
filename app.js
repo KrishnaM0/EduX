@@ -84,7 +84,36 @@ app.put("/show/:id", async (req, res) => {
     }
 });
 
+app.get("/quiz/:courseId/:chapterIndex", async (req, res) => {
+    const { courseId, chapterIndex } = req.params;
+    
+    try {
+        const course = await Courses.findById(courseId);
+        if (!course) {
+            return res.status(404).send('Course not found');
+        }
 
+        const chapter = course.syllabus[chapterIndex];
+        if (!chapter) {
+            return res.status(404).send('Chapter not found');
+        }
+
+        if (!chapter.quiz || chapter.quiz.length === 0) {
+            return res.status(404).send('Quiz not available for this chapter');
+        }
+
+        // console.log("Chapter data:", chapter); // Log chapter data
+        res.render("pages/quiz", { chapter, courseId, chapterIndex, course });
+    } catch (err) {
+        console.error("Error loading quiz: ", err);
+        res.status(500).send('Server error');
+    }
+});
+
+app.get("/dashboard", async (req, res)=>{
+    let courses = await Courses.find();
+    res.render("pages/dashboard", {courses});
+});
 
 app.listen(8080, ()=>{
     console.log("The server is working..!");

@@ -1,0 +1,84 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <div class="quizdiv">
+        <h3>Quiz for <%= chapter.chapter %></h3>
+        <hr>
+    
+        <% if (chapter.quiz && chapter.quiz.length > 0) { %>
+            <div id="quiz">
+                <h5 id="question-number" class="que"><%= chapter.quiz[0].qno %>. <%= chapter.quiz[0].qname %></h5>
+    
+                <form id="quiz-form">
+                    <% chapter.quiz[0].options.forEach((option, index) => { %>
+                        <div class="option">
+                            <input type="radio" name="answer" value="<%= option.option %>" id="option<%= index %>">
+                            <label for="option<%= index %>"><%= option.option %></label>
+                        </div>
+                    <% }) %>
+                </form>
+                <div class="quiz-btns">
+                    <button type="button" class="btn btn-warning" id="previous-btn" disabled>Previous</button>
+                    <button type="button" class="btn btn-success" id="next-btn">Next</button>
+                    <button type="button" class="btn btn-danger" id="submit-btn" style="display: none;">Submit</button>
+                </div>
+            </div>
+        <% } else { %>
+            <p>No quiz available for this chapter.</p>
+        <% } %>
+    </div>
+
+    <script>
+        // Initialize quiz data
+        let currentQuestion = 0;
+        const quiz = <%- JSON.stringify(chapter.quiz) %>;  // Get quiz data from server-side
+        
+        const questionNumber = document.getElementById("question-number");
+        const quizForm = document.getElementById("quiz-form");
+        const previousBtn = document.getElementById("previous-btn");
+        const nextBtn = document.getElementById("next-btn");
+        const submitBtn = document.getElementById("submit-btn");
+
+        // Function to update the quiz content
+        function updateQuiz() {
+            const currentQuiz = quiz[currentQuestion];
+
+            // Update the question text
+            questionNumber.textContent = `${currentQuiz.qno}. ${currentQuiz.qname}`;
+
+            // Update the options
+            quizForm.innerHTML = '';  // Clear current options
+            currentQuiz.options.forEach((option, index) => {
+                const optionHTML = `
+                    <div class="option">
+                        <input type="radio" name="answer" value="${option.option}" id="option${index}">
+                        <label for="option${index}">${option.option}</label>
+                    </div>
+                `;
+                quizForm.insertAdjacentHTML('beforeend', optionHTML);
+            });
+
+            // Enable/disable Previous and Next buttons
+            previousBtn.disabled = currentQuestion === 0;
+            nextBtn.style.display = currentQuestion === quiz.length - 1 ? 'none' : 'inline-block';
+            submitBtn.style.display = currentQuestion === quiz.length - 1 ? 'inline-block' : 'none';
+        }
+
+        // Add event listeners for Previous and Next buttons
+        previousBtn.addEventListener("click", () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                updateQuiz();
+            }
+        });
+
+        nextBtn.addEventListener("click", () => {
+            if (currentQuestion < quiz.length - 1) {
+                currentQuestion++;
+                updateQuiz();
+            }
+        });
+
+        // Initialize the first question
+        updateQuiz();
+    </script>
+</body>

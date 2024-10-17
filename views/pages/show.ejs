@@ -61,14 +61,19 @@
                                 allowfullscreen>
                             </iframe>
                             <br><br>
-                            <button type="button" class="btn btn-primary">Quiz</button>
+                    
+                            <a href="/quiz/<%=course._id%>/<%=i%>" class="btn btn-primary">Quiz</a> <!-- Quiz Button -->
                             <button type="button" class="btn btn-warning" id = "notes-btn">Notes</button>
                         </div>
                     </div>
                     <br>
                     <div class="notes">
                         <textarea name="syllabus[<%=i%>][notes]" placeholder="Enter Your Notes Here..!" class="notedown"><%=course.syllabus[i].notes%></textarea>
-                        <br><button type="submit" class="btn btn-success">Save Notes</button>
+                        <br>
+                        <div class="notes-btns">
+                            <button type="submit" class="btn btn-success">Save Notes</button>
+                            <button type="button" class="btn btn-danger" id="download-pdf-btn"><i class="fa-solid fa-download" style="margin-right: 0.3rem;"></i> PDF</button>
+                        </div>
                     </div>
                     <%}%>
                     <br>
@@ -80,4 +85,31 @@
     </div>
     <br>
     <br>
+
+    <!-- Include jsPDF and html2canvas from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script>
+    // Function to download notes as PDF
+    document.getElementById('download-pdf-btn').addEventListener('click', function() {
+        const notesText = document.querySelector('.notedown').value; // Get the notes text
+
+        // jsPDF instance
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Set the title for the PDF
+        doc.setFontSize(16);
+        doc.text('Your Notes', 10, 10);  // Title of the PDF
+
+        // Add the notes text
+        doc.setFontSize(12);
+        doc.text(notesText, 10, 20);  // Notes content
+
+        // Save the generated PDF
+        doc.save('notes.pdf');
+    });
+</script>
+
 </body>
