@@ -1,4 +1,20 @@
 <% layout("/layouts/boilerplate") %>
 <body>
-    
+    <div class = "allcourses">
+        <form action="/courses?q" method = "GET">
+            <input type="search" placeholder="Search Courses" class = "search" name = "searchQuery">
+        </form>
+        <div class = "container">
+            <%for(let course of courses){%>
+                <div class="card" style="width: 18rem;">
+                    <img src="<%=course.image%>" class="card-img-top" alt="image">
+                    <div class="card-body">
+                      <h5 class="card-title"><%=course.title%></h5>
+                      <p class="card-text">Tutor : <a href="<%=course.tutorlink%>" class = "tutor"><%=course.tutor%></a><br><i class="fa-solid fa-star"></i> <%=course.rating%></p>
+                      <a href="/show/<%=course._id%>" class="btn btn-primary">Explore</a>
+                    </div>
+                </div>
+              <%}%>
+        </div>
+    </div>
 </body>

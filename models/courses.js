@@ -1,4 +1,6 @@
 
+const mongoose = require("mongoose");
+
 // let quizSchema = new mongoose.Schema({
 //     questionNo: Number,
 //     question: String,
@@ -16,8 +18,6 @@
 //     notes: String, 
     // quiz: [quizSchema], 
 // });
-
-const mongoose = require("mongoose");
 
 let courseSchema = new mongoose.Schema({
     title: { type: String, required: true },

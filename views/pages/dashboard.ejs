@@ -1,63 +1,5 @@
-<!-- <% layout("/layouts/boilerplate") %>
-<body>
-
-    <div class = "dashboard-container">
-        <div class = "user-enrolled">
-            <div class = "enrolled">
-                <h3 style="margin-bottom : 1rem; text-decoration :overline red;">Enrolled Courses</h3>
-                <%for(let course of courses){%>
-                    <div class="card mb-3" style="max-width: 30rem;">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img style="height:100%;" src="<%=course.image%>" class="img-fluid rounded-start" alt="img">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <a href="/show/<%=course._id%>" style = "color : black;">
-                                        <h5 class="card-title"><%=course.title%></h5>
-                                    </a>
-                                    <a href="<%=course.tutorlink%>" class="card-text">Tutor : <%=course.tutor%></a>
-                                    <br>
-                                    <input type="range">
-                                </div>
-                            </div>
-                        </div> 
-                    </div>                        
-                       
-                <%}%>
-            </div>
-            <div class = "profile">
-                <img src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?t=st=1729198547~exp=1729199147~hmac=1e8af087514025937e30e22845f9de9a0293b3601d48951740f086cd84548627" alt="user-profile">
-                <h4 style="margin-top: 0.5rem;">Krishna Muskawad</h4>
-                <div class = "user-links">
-                    <a href="https://www.linkedin.com/in/krishna-muskawad/">
-                        <i class="fa-brands fa-linkedin"></i>
-                    </a>
-                    <a href="https://github.com/KrishnaM0">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class = "evaluation">
-            <div class = "attendance">
-                <h3 style="margin-bottom : 1rem; text-decoration :overline red;">Attendance</h3>
-
-            </div>
-            <div class="quiz">
-                <h3 style="margin-bottom : 1rem; text-decoration :overline red;">Quiz Results</h3>
-
-            </div>
-        </div>
-    </div>
-    
-</body> -->
-
-
 <% layout("/layouts/boilerplate") %>
 <body>
-
     <div class="dashboard-container">
         <div class="user-enrolled">
             <div class="enrolled">
@@ -108,15 +50,18 @@
                 <!-- Placeholder for attendance progress bar -->
                 <div style="display: flex; align-items: center;">
                     <span style="margin-right: 0.5rem;">90%</span>
-                    <div style="flex-grow: 1; background-color: #e0e0e0; height: 10px; border-radius: 10px;">
-                        <div style="width: 90%; background: linear-gradient(to right, #6a00ff, #f200ff); height: 100%; border-radius: 10px;"></div>
+                    <div style="flex-grow: 1; background-color: #e0e0e0; height: 1rem; width : 10rem; border-radius: 1rem;">
+                        <div style="width: 90%; background: linear-gradient(to right, #6a00ff, #f200ff); height: 100%; border-radius: 1rem;"></div>
                     </div>
                 </div>
             </div>
             <div class="quiz">
                 <h3 style="margin-bottom : 1rem; text-decoration : overline red;">Quiz Results</h3>
+                <div class="quizr">
+                    <h5>CSS Tutorial for Beginners</h5>
+                    <span><b>83%</b></span>
+                </div>
             </div>
         </div>
     </div>
-
 </body>

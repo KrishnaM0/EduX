@@ -1,35 +1,8 @@
-// const toggleButton = document.querySelector(".angle-down");
-// const lectureDiv = document.querySelector(".lecture");
-// const notesBtn = document.getElementById("notes-btn");
-// const notes = document.querySelector(".notes");
 
-// toggleButton.addEventListener("click", function() {
-//      if (lectureDiv.style.display === "none") {
-//          lectureDiv.style.display = "block"; 
-//          toggleButton.innerHTML = '<i class="fa-solid fa-angle-up"></i>';
-//      } else {
-//          lectureDiv.style.display = "none";
-//          toggleButton.innerHTML = '<i class="fa-solid fa-angle-down"></i>';
-//      }
-//  });
-
-// lectureDiv.style.display = "none";
-
-// notesBtn.addEventListener("click", ()=>{
-//     if(notes.style.display === "none"){
-//         notes.style.display = "block";
-//     }else{
-//         notes.style.display = "none";
-
-//     }
-// });
-// notes.style.display = "none";
-
-
-const toggleButtons = document.querySelectorAll(".angle-down"); // Select all toggle buttons
-const lectureDivs = document.querySelectorAll(".lecture"); // Select all lecture divs
-const notesButtons = document.querySelectorAll("#notes-btn"); // Select all notes buttons
-const notesDivs = document.querySelectorAll(".notes"); // Select all notes divs
+const toggleButtons = document.querySelectorAll(".angle-down"); 
+const lectureDivs = document.querySelectorAll(".lecture");
+const notesButtons = document.querySelectorAll("#notes-btn"); 
+const notesDivs = document.querySelectorAll(".notes");
 
 // Set initial state for all lecture and notes divs
 lectureDivs.forEach(div => div.style.display = "none");
@@ -55,8 +28,35 @@ notesButtons.forEach((notesButton, index) => {
             notesDivs[index].style.display = "block";
         } else {
             notesDivs[index].style.display = "none";
+
         }
     });
 });
 
+const navLinks = document.querySelectorAll('.nav-link');
 
+function updateActiveLink() {
+    const currentPath = window.location.pathname;
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        }
+    });
+}
+updateActiveLink();
+
+navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+        navLinks.forEach(link => link.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
+// Handle login icon color change when clicked
+loginLink.addEventListener('click', function() {
+    navLinks.forEach(link => link.classList.remove('active'));
+    this.classList.add('active'); 
+});

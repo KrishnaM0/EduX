@@ -54,10 +54,24 @@ app.get("/login", (req, res)=>{
     res.render("pages/login.ejs");
 });
 
-app.get("/courses", async (req, res)=>{
-    let courses = await Courses.find();
-    res.render("pages/courses.ejs", {courses});
+app.get("/courses", async (req, res) => {
+    const { searchQuery } = req.query || "";
+
+    // If a search query is provided, search by course title or tutor name
+    let query = {};
+    if (searchQuery) {
+        query = {
+            $or: [
+                { title: { $regex: searchQuery, $options: 'i' } }, // Case-insensitive search for course title
+                { tutor: { $regex: searchQuery, $options: 'i' } }  // Case-insensitive search for tutor name
+            ]
+        };
+    }
+
+    let courses = await Courses.find(query);
+    res.render("pages/courses.ejs", { courses });
 });
+
 app.get("/about", (req, res)=>{
     res.render("pages/about.ejs");
 });

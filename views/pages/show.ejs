@@ -11,38 +11,6 @@
             <br>
             <h3 style="text-decoration:overline red;">Syllabus</h3>
             <br>
-            <!-- <form action="/show/<%=course._id%>?_method=PUT" method = "POST">
-                <div class="chapter">
-                    <%for(let ch of course.syllabus){%>
-                    <div class="chapter-details">
-                        <div class="chapter-logic">
-                            <span class="chapter-name"><%=ch.chapter%></span>
-                            <a class="angle-down" id="toggleButton"><i class="fa-solid fa-angle-down"></i></a>
-                        </div>
-                        <br>
-                        <div class="lecture" id="lectureDiv">
-                            <iframe width="600" height="320" 
-                                src="https://www.youtube.com/embed/<%=ch.lectureurl%>"
-                                title="YouTube video player" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
-                            <br><br>
-                            <button type="button" class="btn btn-primary">Quiz</button>
-                            <button type="button" class="btn btn-warning" id = "notes-btn">Notes</button>
-                        </div>
-                    </div>
-                    <br>
-                    <div class = "notes">
-                        <textarea name="notes" placeholder = "Enter Your Notes Here..!" class = "notedown"><%=ch.notes%></textarea>
-                        <br><button type="submit" class="btn btn-success">Save Notes</button>
-                    </div>
-                    <%}%>
-                    <br>
-                </div>
-            </form> -->
-
             <form action="/show/<%=course._id%>?_method=PUT" method="POST">
                 <div class="chapter">
                     <%for(let i = 0; i < course.syllabus.length; i++) { %>
@@ -111,5 +79,4 @@
         doc.save('notes.pdf');
     });
 </script>
-
 </body>
