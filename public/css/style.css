@@ -398,3 +398,25 @@ body{
 .user-links .fa-github:hover{
     color :#8134AF;
 }
+.connect{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding : 1rem;
+}
+.contact{
+    margin : 2rem;
+    padding : 2rem;
+    width : 50%;
+    text-align: center;
+    border: none;
+    box-shadow: 0rem 0.2rem 0.5rem grey;
+    border-radius: 1rem;
+}
+.contact-div{
+    margin: 1rem;
+    padding : 1rem;
+}
+.contact-img{
+    width : 50%;
+}
