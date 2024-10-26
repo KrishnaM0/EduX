@@ -5,6 +5,7 @@ const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
 const app = express();
 const Courses = require("./models/courses.js");
+const initData = require("./init/data.js");
 
 mongoose.connect('mongodb://127.0.0.1:27017/Edux');
 
@@ -15,38 +16,21 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
 app.engine("ejs", ejsMate);
 
-// let sampleData = async ()=>{
-//     let course = [
-//         {
-//             title: 'Python for Beginners',
-//             tutor: 'Telusko',
-//             image: 'https://i.ytimg.com/vi/YfO28Ihehbk/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCqmWkLQL0HmrsMlt7HW-WzTW5W2w',
-//             rating: 4.6,
-//             syllabus: [
-//                 {
-//                     chapter: 'Python Tutorial',
-//                     lectureurl: 'YfO28Ihehbk',
-//                     notes: 'Your Notes..!',
-//                 },                
-//             ]
-//         },
-//     ]
-//     await Course.insertMany(course);
-// };
 
+// let sampleData = async ()=>{
+//     await Courses.insertMany(initData);
+// };
 // sampleData();
 
 
 app.get("/", async (req, res)=>{
     let courses = await Courses.find();
-    // console.log(course);
     res.render("pages/home.ejs", {courses});
 });
 
 app.get("/show/:id", async (req, res)=>{
     let {id} = req.params;
     let course = await Courses.findById(id);
-    // console.log(courses);
     res.render("pages/show.ejs", {course});
 });
 
@@ -56,8 +40,6 @@ app.get("/login", (req, res)=>{
 
 app.get("/courses", async (req, res) => {
     const { searchQuery } = req.query || "";
-
-    // If a search query is provided, search by course title or tutor name
     let query = {};
     if (searchQuery) {
         query = {
@@ -115,8 +97,6 @@ app.get("/quiz/:courseId/:chapterIndex", async (req, res) => {
         if (!chapter.quiz || chapter.quiz.length === 0) {
             return res.status(404).send('Quiz not available for this chapter');
         }
-
-        // console.log("Chapter data:", chapter); // Log chapter data
         res.render("pages/quiz", { chapter, courseId, chapterIndex, course });
     } catch (err) {
         console.error("Error loading quiz: ", err);
