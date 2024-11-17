@@ -6,6 +6,7 @@ const methodOverride = require("method-override");
 const app = express();
 const Courses = require("./models/courses.js");
 const initData = require("./init/data.js");
+const nodemailer = require("nodemailer");
 
 mongoose.connect('mongodb://127.0.0.1:27017/Edux');
 
@@ -34,10 +35,12 @@ app.get("/show/:id", async (req, res)=>{
     res.render("pages/show.ejs", {course});
 });
 
+app.get("/signup", (req, res)=>{
+    res.render("pages/signup.ejs");
+});
 app.get("/login", (req, res)=>{
     res.render("pages/login.ejs");
 });
-
 app.get("/courses", async (req, res) => {
     const { searchQuery } = req.query || "";
     let query = {};
@@ -52,13 +55,6 @@ app.get("/courses", async (req, res) => {
 
     let courses = await Courses.find(query);
     res.render("pages/courses.ejs", { courses });
-});
-
-app.get("/about", (req, res)=>{
-    res.render("pages/about.ejs");
-});
-app.get("/contact", (req, res)=>{
-    res.render("pages/contact.ejs");
 });
 
 app.put("/show/:id", async (req, res) => {
@@ -107,6 +103,41 @@ app.get("/quiz/:courseId/:chapterIndex", async (req, res) => {
 app.get("/dashboard", async (req, res)=>{
     let courses = await Courses.find();
     res.render("pages/dashboard", {courses});
+});
+
+app.get("/contact", (req, res)=>{
+    res.render("pages/contact.ejs");
+});
+
+app.post("/contact", async (req, res) => {
+    const { cname, cemail, cmsg } = req.body;
+
+    try {
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: "krishnamuskawad31@gmail.com",
+                pass: "djmk ckbd flpy xxoi",
+            },
+        });
+
+        const mailOptions = {
+            from: `"${cname}" <${cemail}>`, // Sender's name and email
+            to: "krishnamuskawad31@gmail.com",
+            subject: "New Contact Form Submission",
+            text: `You have received a new message:
+            Name: ${cname}
+            Email: ${cemail}
+            Message: ${cmsg}`,
+        };
+
+        await transporter.sendMail(mailOptions);
+
+        res.send("Thank you for contacting us. Your message has been sent!");
+    } catch (error) {
+        console.error("Error sending email: ", error);
+        res.status(500).send("There was an error sending your message. Please try again later.");
+    }
 });
 
 app.listen(8080, ()=>{

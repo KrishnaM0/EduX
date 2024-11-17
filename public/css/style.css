@@ -420,3 +420,34 @@ body{
 .contact-img{
     width : 50%;
 }
+.skipLogin{
+    /* text-decoration: none; */
+    font-weight: 500;
+    color : red;
+    
+}
+.skipLogin:hover{
+    text-decoration: overline;
+}
+.userAccess{
+    width : 10rem;
+    position: fixed;
+    border : none;
+    box-shadow: 0rem 0.2rem 0.5rem grey;
+    margin : 1rem;
+    margin-top : 0.5rem;
+    padding : 1rem;
+    border-radius: 1rem;
+    text-align: center;
+    background-color:#f8f9fa;
+    right : 0rem;
+}
+.userAccess a{
+    text-decoration: none;
+    color : black;
+    font-weight: 500;
+    /* display: block; */
+}
+.userAccess a:hover{
+    color :red;
+}

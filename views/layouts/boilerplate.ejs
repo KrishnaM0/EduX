@@ -12,7 +12,11 @@
 </head>
 <body> 
     <%- include("../includes/navbar.ejs") %>
-
+    <div class = "userAccess">
+        <a href="/login" class = "signin">Sign in</a>
+        <hr>
+        <a href="/signup" class = "signup">Sign up</a>
+    </div>
     <%- body %>
     <div class = "chatbot">
         <i class="fa-brands fa-rocketchat"></i>

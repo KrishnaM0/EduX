@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
     const toggleButtons = document.querySelectorAll(".angle-down"); 
     const lectureDivs = document.querySelectorAll(".lecture");
     const notesButtons = document.querySelectorAll("#notes-btn"); 
@@ -8,6 +7,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const notesTextareas = document.querySelectorAll(".notedown");
     const navLinks = document.querySelectorAll('.nav-link');
     const loginLink = document.querySelector('.fa-user');
+    const getUser = document.querySelector(".getUser");
+    const userAccess = document.querySelector(".userAccess");
+    // let signin = document.querySelector(".signin");
+
+    getUser.addEventListener("click", ()=>{
+        if(userAccess.style.display === "none"){
+            userAccess.style.display = "block";
+            
+        }
+        else{
+            userAccess.style.display = "none";
+        }
+    });
+    userAccess.style.display = "none";
 
     // Set initial state for all lecture and notes divs
     lectureDivs.forEach(div => div.style.display = "none");
