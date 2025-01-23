@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV != "production") {
+    require("dotenv").config();
+};
+
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
@@ -29,10 +33,10 @@ app.get("/", async (req, res)=>{
     res.render("pages/home.ejs", {courses});
 });
 
-app.get("/show/:id", async (req, res)=>{
+app.get("/shows/:id", async (req, res)=>{
     let {id} = req.params;
     let course = await Courses.findById(id);
-    res.render("pages/show.ejs", {course});
+    res.render("pages/shows.ejs", {course});
 });
 
 app.get("/signup", (req, res)=>{
@@ -57,7 +61,8 @@ app.get("/courses", async (req, res) => {
     res.render("pages/courses.ejs", { courses });
 });
 
-app.put("/show/:id", async (req, res) => {
+
+app.put("/shows/:id", async (req, res) => {
     const { id } = req.params;
     const { syllabus } = req.body;
 
@@ -69,10 +74,10 @@ app.put("/show/:id", async (req, res) => {
                 { $set: { [`syllabus.${i}.notes`]: noteContent } }
             );
         }
-        res.redirect(`/show/${id}`);
+        res.redirect(`/shows/${id}`);
     } catch (err) {
         console.error("Error updating notes: ", err);
-        res.redirect(`/show/${id}`);
+        res.redirect(`/shows/${id}`);
     }
 });
 
@@ -117,7 +122,7 @@ app.post("/contact", async (req, res) => {
             service: "gmail",
             auth: {
                 user: "krishnamuskawad31@gmail.com",
-                pass: "djmk ckbd flpy xxoi",
+                pass: process.env.ECONNECT,
             },
         });
 
