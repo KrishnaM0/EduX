@@ -1,40 +1,58 @@
 <% layout("/layouts/boilerplate") %>
 <body>
     <div class="shows-container">
+        <!-- Chapters Sidebar -->
         <div class="shows-chapters">
             <p class="chapters-overview shows-chapters-name active-chapter" onclick="showOverview()">Overview</p>
             <hr>
             <% for (let i = 0; i < course.syllabus.length; i++) { %>
-                <p class="shows-chapters-name" onclick="showChapterDetails('<%=i%>')">
-                    <%= course.syllabus[i].chapter %>
+                <p class="shows-chapters-name" onclick="showChapterDetails('<%= i %>')">
+                    Chapter <%= i + 1 %>: <%= course.syllabus[i].chapter %>
                 </p>
                 <hr>
             <% } %>
         </div>
+
+        <!-- Main Content Area -->
         <div class="shows-content">
+            <!-- Overview Section -->
             <div class="shows-chapter-content">
                 <div class="overview">
-                    <img src="<%= course.image %>" class="shows-chapter-img mt-0" alt="image">
+                    <img 
+                        src="<%= course.image || '/images/default-course.jpg' %>" 
+                        class="shows-chapter-img mt-0" 
+                        alt="<%= course.title %> image"
+                    >
                     <h5 class="shows-chapter-title mt-2"><%= course.title %></h5>
-                    <p class="shows-chapter-tutor">Tutor : 
-                        <a href="<%= course.tutorlink %>" class="tutor"><%= course.tutor %></a>
+                    <p class="shows-chapter-tutor">
+                        Tutor: 
+                        <% if (course.tutorlink) { %>
+                            <a href="<%= course.tutorlink %>" class="tutor" target="_blank" rel="noopener noreferrer">
+                                <%= course.tutor %>
+                            </a>
+                        <% } else { %>
+                            <%= course.tutor %>
+                        <% } %>
                         <br>
-                        <i class="fa-solid fa-star"></i> <%= course.rating %>
+                        <i class="fa-solid fa-star"></i> <%= course.rating %> / 5
                     </p>
                     <button type="button" class="btn btn-success">Enroll Now</button>
                     <hr>
                 </div>
             </div>
-    
+
+            <!-- Chapter Details Section -->
             <div class="shows-chapter-details">
-                <form action="/shows/<%=course._id%>?_method=PUT" method="POST">
+                <form action="/shows/<%= course._id %>?_method=PUT" method="POST">
                     <% for (let i = 0; i < course.syllabus.length; i++) { %>
                         <div class="chapter-detail" id="chapterDetail<%= i %>" style="display: none;">
-                            <h5 class="shows-chapter-name mb-3"><%= course.syllabus[i].chapter %></h5>
+                            <h5 class="shows-chapter-name mb-3">Chapter <%= i + 1 %>: <%= course.syllabus[i].chapter %></h5>
                             <div class="lectures">
-                                <iframe width="100%" height="320" 
-                                    src="https://www.youtube.com/embed/<%= course.syllabus[i].lectureurl %>"
-                                    title="YouTube video player" 
+                                <iframe 
+                                    width="100%" 
+                                    height="320" 
+                                    src="https://www.youtube.com/embed/<%= course.syllabus[i].lectureurl || '' %>" 
+                                    title="Lecture Video"
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                     allowfullscreen>
@@ -44,18 +62,25 @@
                                 <button type="button" class="btn btn-warning shows-notes-btn">Notes</button>
                             </div>
                             <hr>
+
+                            <!-- Notes Section -->
                             <div class="shows-chapter-notes">
-                                <textarea name="syllabus[<%=i%>][notes]" class="chapter-notes" placeholder="Enter your notes here..!"><%=course.syllabus[i].notes%></textarea>
+                                <textarea 
+                                    name="syllabus[<%= i %>][notes]" 
+                                    class="chapter-notes" 
+                                    placeholder="Enter your notes here..."
+                                ><%= course.syllabus[i].notes || '' %></textarea>
                                 <div class="notes-btns">
                                     <button type="submit" class="btn btn-success">Save Notes</button>
-                                    <button type="button" class="btn btn-danger download-pdf-btns"><i class="fa-solid fa-download" style="margin-right: 0.3rem;"></i> PDF</button>
+                                    <button 
+                                        type="button" 
+                                        class="btn btn-danger download-pdf-btns"
+                                        onclick="downloadPDF('<%= i%>')"
+                                    >
+                                        <i class="fa-solid fa-download" style="margin-right: 0.3rem;"></i> PDF
+                                    </button>
                                 </div>
                                 <hr>
-                            </div>
-                            <div class="shows-chapter-quiz">
-                                <div class="chapter-quiz">
-                                    
-                                </div>
                             </div>
                         </div>
                     <% } %>
@@ -63,9 +88,12 @@
             </div>
         </div>
     </div>
+
     <br><br><br><br>
-    <!-- Include jsPDF and html2canvas from CDN -->
+
+    <!-- Include jsPDF and html2canvas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <%-include("../includes/footer.ejs")%>
+    
+    <%- include("../includes/footer.ejs") %>
 </body>

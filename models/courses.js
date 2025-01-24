@@ -1,50 +1,83 @@
-
 const mongoose = require("mongoose");
 
-// let quizSchema = new mongoose.Schema({
-//     questionNo: Number,
-//     question: String,
-//     options: [
-//         {
-//             option : String,
-//         },
-//     ], 
-//     correctAnswer: String, 
-// });
+// Quiz Schema
+const quizSchema = new mongoose.Schema({
+    qno: { type: Number, required: true },
+    qname: { type: String, required: true },
+    options: [{ option: { type: String, required: true } }],
+    answer: { type: String, required: true },
+});
 
-// let syllabusSchema = new mongoose.Schema({
-//     chapter: String,
-//     lecture: String,
-//     notes: String, 
-    // quiz: [quizSchema], 
-// });
+// Syllabus Schema
+const syllabusSchema = new mongoose.Schema({
+    chapter: { type: String, required: true },
+    lectureurl: { type: String, required: true },
+    notes: { type: String, default: "" },
+    quiz: [quizSchema],
+});
 
-let courseSchema = new mongoose.Schema({
-    title: { type: String, required: true },
-    tutor: { type: String, required: true}, 
-    tutorlink : {type : String},
-    image: String,
-    rating: { type: Number, min: 0, max: 5, default: 0 }, // Limiting rating from 0 to 5
-    // rating : {type : Number},
-    syllabus: [
-        {
-            chapter : String,
-            lectureurl : String,
-            notes : String,
-            quiz : [
-                {
-                    qno : {type : Number},
-                    qname : {type : String},
-                    options : [
-                        {
-                            option : {type : String},
-                        },
-                    ],
-                    answer : {type : String},
-                },
-            ],
-        },
-    ], 
+// Course Schema
+const courseSchema = new mongoose.Schema({
+    title: { type: String, required: true, trim: true },
+    tutor: { type: String, required: true, trim: true },
+    tutorlink: { type: String, default: "" },
+    image: { type: String, default: "" },
+    syllabus: [syllabusSchema],
+    reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }], // Reference to Review model
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }, // Reference to User model
 });
 
 module.exports = mongoose.model("Course", courseSchema);
+
+
+
+
+// const mongoose = require("mongoose");
+
+// const quizSchema = new mongoose.Schema({
+//     qno : {
+//         type : Number,
+//     },
+//     qname : {
+//         type : String
+//     },
+//     options : [
+//         {
+//             option : {
+//                 type : String
+//             },
+//         },
+//     ],
+//     answer : {
+//         type : String,
+//     },
+// });
+
+// const syllabusSchema = new mongoose.Schema({
+//     chapter : String,
+//     lectureurl : String,
+//     notes : String,
+//     quiz: [quizSchema], 
+// });
+
+// const courseSchema = new mongoose.Schema({
+//     title: { type: String, required: true },
+//     tutor: { type: String, required: true}, 
+//     tutorlink : {type : String},
+//     image: String,
+
+//     syllabus: [syllabusSchema], 
+
+//     reviews : [
+//         {
+//             type : mongoose.Schema.Types.ObjectId,
+//             ref : "Review",
+//         },
+//     ],
+//     owner : {
+//         type : mongoose.Schema.Types.ObjectId,
+//         ref : "User",
+//     },
+// });
+
+// module.exports = mongoose.model("Course", courseSchema);

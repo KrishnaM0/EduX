@@ -1,5 +1,60 @@
 <% layout("/layouts/boilerplate") %>
 <body>
+    <div class="allcourses">
+        <!-- Search Form -->
+        <form action="/courses" method="GET" class="search-form">
+            <input 
+                type="search" 
+                placeholder="Search Courses" 
+                class="search" 
+                name="searchQuery"
+                value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>"
+            >
+        </form>
+
+        <!-- Courses Container -->
+        <div class="course-container">
+            <% if (courses.length > 0) { %>
+                <% for (let course of courses) { %>
+                    <div class="card" style="width: 18rem;">
+                        <img 
+                            src="<%= course.image || '/images/default-course.jpg' %>" 
+                            class="card-img-top" 
+                            alt="<%= course.title %> image"
+                        >
+                        <div class="card-body">
+                            <h5 class="card-title"><%= course.title %></h5>
+                            <p class="card-text">
+                                Tutor: 
+                                <% if (course.tutorlink) { %>
+                                    <a href="<%= course.tutorlink %>" class="tutor" target="_blank" rel="noopener noreferrer">
+                                        <%= course.tutor %>
+                                    </a>
+                                <% } else { %>
+                                    <%= course.tutor %>
+                                <% } %>
+                                <br>
+                                <i class="fa-solid fa-star"></i> <%= course.rating %> / 5
+                            </p>
+                            <a href="/shows/<%= course._id %>" class="btn btn-primary">Explore</a>
+                        </div>
+                    </div>
+                <% } %>
+            <% } else { %>
+                <p class="no-courses-message">No courses found for your search. Try a different query!</p>
+            <% } %>
+        </div>
+    </div>
+
+    <%- include("../includes/footer.ejs") %>
+</body>
+
+
+
+
+
+<!-- <% layout("/layouts/boilerplate") %>
+<body>
     <div class = "allcourses">
         <form action="/courses?q" method = "GET">
             <input type="search" placeholder="Search Courses" class = "search" name = "searchQuery">
@@ -18,4 +73,4 @@
         </div>
     </div>
     <%-include("../includes/footer.ejs")%>
-</body>
+</body> -->
