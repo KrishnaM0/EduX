@@ -233,7 +233,6 @@
 }
 .fa-user{
     font-size: 2rem;
-    padding-right : 1rem;
     text-decoration: none;
     color :#222222;
 }
@@ -262,11 +261,11 @@
 }
 .quizdiv{
     width : 80%;
-    height : 20rem;
     border: 0.05rem solid gray;
     margin: 2rem;
     padding: 1.5rem;
     border-radius: 1rem;
+    margin: auto;
 }
 .quiz-btns{
     margin-top: 1.3rem;   
@@ -506,6 +505,17 @@
 }
 .shows-chapter-notes{
     display: none;
+}
+.shows-quiz-section{
+    padding: 0.5rem;
+    margin: 0.5em;
+}
+.shows-quiz{
+    padding: 1rem;
+    border: 0.1rem solid rgba(18, 18, 18, 0.4);
+    width: 38rem;
+    border-radius: 1rem;
+    margin: auto;
 }
 @media (max-width : 1000px){
 

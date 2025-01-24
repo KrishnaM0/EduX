@@ -5,7 +5,7 @@ const quizSchema = new mongoose.Schema({
     qno: { type: Number, required: true },
     qname: { type: String, required: true },
     options: [{ option: { type: String, required: true } }],
-    answer: { type: String, required: true },
+    answer: { type: String},
 });
 
 // Syllabus Schema
@@ -24,7 +24,7 @@ const courseSchema = new mongoose.Schema({
     image: { type: String, default: "" },
     syllabus: [syllabusSchema],
     reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }], // Reference to Review model
-    owner: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }, // Reference to User model
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: "User"}, // Reference to User model
 });
 
 module.exports = mongoose.model("Course", courseSchema);

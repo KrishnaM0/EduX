@@ -32,6 +32,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 // Seed Data Function (Optional)
 // Uncomment if you want to initialize the database with sample data
 // const seedDatabase = async () => {
+//     await Courses.deleteMany({});
 //     await Courses.insertMany(initData);
 //     console.log("Sample data inserted");
 // };

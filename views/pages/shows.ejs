@@ -7,7 +7,7 @@
             <hr>
             <% for (let i = 0; i < course.syllabus.length; i++) { %>
                 <p class="shows-chapters-name" onclick="showChapterDetails('<%= i %>')">
-                    Chapter <%= i + 1 %>: <%= course.syllabus[i].chapter %>
+                    <%= i + 1 %>. <%= course.syllabus[i].chapter %>
                 </p>
                 <hr>
             <% } %>
@@ -82,6 +82,20 @@
                                 </div>
                                 <hr>
                             </div>
+                            <!-- Quiz Section -->
+                            <!-- <div class="shows-quiz-section">
+                                <%for(quizz of course.syllabus[i].quiz){%>
+                                    <div class="shows-quiz mb-4 mt-2">
+                                        <h5><b><%=quizz.qno%>. <%=quizz.qname%></b><h5/>
+                                        <hr>
+                                        <%for(optn of quizz.options){%>
+                                        <input type="radio" id="shows-quiz-option">
+                                        <label for="shows-quiz-option"><%=optn.option%></label>
+                                        <br>
+                                        <%}%>
+                                    </div>
+                                <%}%>
+                            </div> -->
                         </div>
                     <% } %>
                 </form>
