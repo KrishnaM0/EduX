@@ -1,11 +1,28 @@
 const notesTextarea = document.querySelectorAll(".chapter-notes");
 const downloadPdfButton = document.querySelectorAll(".download-pdf-btns");
 const chaptersSelected = document.querySelectorAll(".shows-chapters-name");
+const showsChapterNotes = document.querySelectorAll(".shows-chapter-notes");
+const showsNotesBtn = document.querySelectorAll(".shows-notes-btn");
 
 chaptersSelected.forEach(chapters => {
     chapters.addEventListener('click', function() {
         chaptersSelected.forEach(chapters => chapters.classList.remove('active-chapter'));
         this.classList.add('active-chapter');
+    });
+});
+
+// Loop through each Notes button and add event listeners
+showsNotesBtn.forEach((button, index) => {
+    button.addEventListener("click", () => {
+        // Find the corresponding notes section
+        const notesSection = showsChapterNotes[index];
+
+        // Toggle display style between block and none
+        if (notesSection.style.display === "none" || notesSection.style.display === "") {
+            notesSection.style.display = "block";
+        } else {
+            notesSection.style.display = "none";
+        }
     });
 });
 
