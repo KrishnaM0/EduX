@@ -41,28 +41,3 @@
 
     <%- include("../includes/footer.ejs") %>
 </body>
-
-
-
-
-<!-- <% layout("/layouts/boilerplate") %>
-<body>
-    <div class = "home-page">
-        <h2 class = "home-heading">Welcome To EduX</h2>
-        <p>Centralized Smart E-learning Platform</p>
-    </div>
-    <h4 class = "home-text">Explore Our Featured Courses</h4>
-    <div class = "home-container">
-      <%for(let course of courses){%>
-        <div class="card" style="width: 18rem;">
-            <img src="<%=course.image%>" class="card-img-top" alt="image">
-            <div class="card-body">
-              <h5 class="card-title"><%=course.title%></h5>
-              <p class="card-text">Tutor : <a href="<%=course.tutorlink%>" class = "tutor"><%=course.tutor%></a><br><i class="fa-solid fa-star"></i> <%=course.rating%></p>
-              <a href="/shows/<%=course._id%>" class="btn btn-primary">Explore</a>
-            </div>
-        </div>
-      <%}%>
-    </div>
-    <%-include("../includes/footer.ejs")%>
-</body> -->
