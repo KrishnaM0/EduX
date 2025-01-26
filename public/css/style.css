@@ -11,6 +11,7 @@
 .nav-link{
     color : #222222 !important;
     font-weight: 500 !important;
+    margin-right: 3rem !important;
 }
 .nav-link:hover{
     color : red !important;
@@ -58,7 +59,7 @@
     width : 100%;
     display: flex;
     align-items: center;
-    justify-content:space-evenly;
+    justify-content: end;
 }
 .f-info{
     position:relative;
@@ -517,6 +518,171 @@
     border-radius: 1rem;
     margin: auto;
 }
-@media (max-width : 1000px){
 
+/* Overall styling for the quiz section */
+.shows-quiz-section {
+    padding: 30px;
+    background: linear-gradient(135deg, #ffffff, #e8f0f7); /* Soft gradient with white and light blue */
+    border-radius: 16px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    color: #2c3e50; /* Dark blue-gray for text */
+    margin: 20px auto;
+    max-width: 900px;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+}
+  
+/* Decorative gradient glow effect */
+.shows-quiz-section:before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(224, 243, 255, 0.4), transparent 70%);
+    z-index: -1;
+    filter: blur(40px);
+    pointer-events: none;
+}
+  
+/* Styling for individual quiz containers */
+.shows-quiz {
+    padding: 25px;
+    background: #ffffff; /* Pure white for contrast */
+    border: 1px solid #e1e8ee; /* Subtle border for separation */
+    border-radius: 12px;
+    margin-bottom: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+  
+/* Add a subtle gradient highlight at the top of each quiz */
+.shows-quiz:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(to right, #87CEEB, #6A5ACD);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+  
+/* Hover effect for quiz container */
+.shows-quiz:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+  
+/* Question title styling */
+.shows-quiz h5 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #34495e; /* Rich dark blue */
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
+}
+  
+/* Divider (HR) styling */
+.shows-quiz hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, #3498db, transparent);
+    margin: 15px 0;
+}
+  
+/* Radio input and label container */
+.shows-quiz label {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    font-size: 1.1rem;
+    background: #f8f9fa; /* Very light gray background for options */
+    color: #2c3e50;
+}
+  
+/* Subtle hover and focus effects */
+.shows-quiz label:hover {
+    background: #e8f7ff; /* Light blue hover effect */
+    transform: translateX(5px);
+    border-color: #3498db;
+}
+  
+/* Radio input (hidden but accessible) */
+.shows-quiz input[type="radio"] {
+    display: none;
+}
+  
+/* Custom styles for selected radio options */
+.shows-quiz input[type="radio"]:checked + label {
+    background: #6a5acd; /* Lavender for selected option */
+    color: #ffffff;
+    border-color: #483d8b; /* Deeper lavender for border */
+    font-weight: bold;
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(106, 90, 205, 0.4);
+}
+  
+/* Option text styling */
+.shows-quiz label p {
+    margin: 0;
+    padding-left: 10px;
+    transition: color 0.3s ease;
+}
+  
+/* Change text color on hover */
+.shows-quiz label:hover p {
+    color: #3498db;
+}
+  
+.shows-quiz-section{
+    display: none;
+}
+.alert{
+    position: absolute !important;
+    z-index: 1000 !important;
+    right : 1rem !important;
+    width: 40% !important;
+    margin-top : 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .shows-quiz-section {
+      padding: 20px;
+      margin: 10px auto;
+    }
+    .shows-quiz {
+      padding: 20px;
+    }
+    .shows-quiz h5 {
+      font-size: 1.3rem;
+    }
+    .shows-quiz label {
+      padding: 10px;
+      font-size: 1rem;
+    }
+}
+  
+/* Add subtle animation for quiz section load */
+.shows-quiz-section {
+    animation: fadeIn 0.8s ease-in-out;
+}
+  
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
 }

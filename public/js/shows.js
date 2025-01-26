@@ -3,6 +3,8 @@ const downloadPdfButton = document.querySelectorAll(".download-pdf-btns");
 const chaptersSelected = document.querySelectorAll(".shows-chapters-name");
 const showsChapterNotes = document.querySelectorAll(".shows-chapter-notes");
 const showsNotesBtn = document.querySelectorAll(".shows-notes-btn");
+const showsQuizBtn = document.querySelectorAll(".shows-quiz-btn");
+const showsQuizSection = document.querySelectorAll(".shows-quiz-section");
 
 chaptersSelected.forEach(chapters => {
     chapters.addEventListener('click', function() {
@@ -25,6 +27,18 @@ showsNotesBtn.forEach((button, index) => {
         }
     });
 });
+
+showsQuizBtn.forEach((button, index)=>{
+    button.addEventListener("click", ()=>{
+        const quizSection = showsQuizSection[index];
+        if (quizSection.style.display === "none" || quizSection.style.display === "") {
+            quizSection.style.display = "block";
+        } else {
+            quizSection.style.display = "none";
+        }
+    });
+});
+
 
 function showChapterDetails(index) {
     // Hide all chapter details

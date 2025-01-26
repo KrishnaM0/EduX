@@ -5,11 +5,15 @@
         <div class="shows-chapters">
             <p class="chapters-overview shows-chapters-name active-chapter" onclick="showOverview()">Overview</p>
             <hr>
-            <% for (let i = 0; i < course.syllabus.length; i++) { %>
-                <p class="shows-chapters-name" onclick="showChapterDetails('<%= i %>')">
-                    <%= i + 1 %>. <%= course.syllabus[i].chapter %>
-                </p>
-                <hr>
+            <% if (course.syllabus && course.syllabus.length > 0) { %>
+                <% course.syllabus.forEach((chapter, index) => { %>
+                    <p class="shows-chapters-name" onclick="showChapterDetails('<%= index %>')">
+                        <%= index + 1 %>. <%= chapter.chapter || "Untitled Chapter" %>
+                    </p>
+                    <hr>
+                <% }); %>
+            <% } else { %>
+                <p>No chapters available.</p>
             <% } %>
         </div>
 
@@ -23,86 +27,163 @@
                         class="shows-chapter-img mt-0" 
                         alt="<%= course.title %> image"
                     >
-                    <h5 class="shows-chapter-title mt-2"><%= course.title %></h5>
+                    <h5 class="shows-chapter-title mt-2"><%= course.title || "Untitled Course" %></h5>
                     <p class="shows-chapter-tutor">
                         Tutor: 
                         <% if (course.tutorlink) { %>
-                            <a href="<%= course.tutorlink %>" class="tutor" target="_blank" rel="noopener noreferrer">
-                                <%= course.tutor %>
+                            <a href="<%= course.tutorlink %>" class="tutor">
+                                <%= course.tutor || "Unknown Tutor" %>
                             </a>
                         <% } else { %>
-                            <%= course.tutor %>
+                            <%= course.tutor || "Unknown Tutor" %>
                         <% } %>
                         <br>
-                        <i class="fa-solid fa-star"></i> <%= course.rating %> / 5
+                        <i class="fa-solid fa-star"></i> <%= course.rating || "No Rating" %> / 5
                     </p>
                     <button type="button" class="btn btn-success">Enroll Now</button>
                     <hr>
-                </div>
+                    <% if(currUser){%>
+                        <div class = "review mb-3">
+                            <h5 style="text-decoration :overline red;"><b>Leave a Review</b></h5>
+                            <form action="/shows/<%=course._id%>/reviews" method = "POST">
+                                <div class = "mb-0 mt-3">
+                                    <label for="rating" class = "form-label"><b style="opacity: 0.9;">Rating</b></label>
+                                    <fieldset class="starability-slot">
+                                        <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                                        <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                                        <label for="first-rate1" title="Terrible">1 star</label>
+                                        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                                        <label for="first-rate2" title="Not good">2 stars</label>
+                                        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                                        <label for="first-rate3" title="Average">3 stars</label>
+                                        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                                        <label for="first-rate4" title="Very good">4 stars</label>
+                                        <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                                        <label for="first-rate5" title="Amazing">5 stars</label>
+                                      </fieldset>
+                                </div>
+                                <div class = "mb-3 mt-0">
+                                    <label for="comment" class = "form-label"><b style="opacity: 0.9;">Comment</b></label>
+                                    <textarea class = "form-control" name="review[comment]" id="comment" rows="5" cols="30" placeholder="Enter your comment here..!" required></textarea>
+                                </div>
+                                <button class = "btn btn-outline-dark">Submit</button>
+                            </form>
+                        </div>
+                        <hr>
+                        <% } %>
+                        <%if(course.reviews.length > 0){%>
+                            <h5>All Reviews</h5>
+                            <div class = "row mt-4">
+                                <%for(review of course.reviews){%>
+                                    <div class = "reviewCard card col-5 ms-3 mb-3">
+                                        <div class="card-body">
+                                            <h5 class = "card-title">
+                                                <a href="mailto:<%=review.author.email%>" class = "review-connect"><%=review.author.username%></a>
+                                            </h5>
+                                            <p class="starability-result card-text" data-rating="<%=review.rating%>">
+                                            <p class = "card-text"><%=review.comment%></p>
+                                            <%if(currUser){%>
+                                                <form class = "mb-3" action="/shows/<%=course._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                                                    <button class = "btn btn-sm btn-dark">Delete</button>
+                                                </form>
+                                            <%}%>
+                                        </div>
+                                    </div>
+                                <%}%>
+                            </div>
+                        <%}%>
+                    </div>
             </div>
 
             <!-- Chapter Details Section -->
             <div class="shows-chapter-details">
-                <form action="/shows/<%= course._id %>?_method=PUT" method="POST">
-                    <% for (let i = 0; i < course.syllabus.length; i++) { %>
-                        <div class="chapter-detail" id="chapterDetail<%= i %>" style="display: none;">
-                            <h5 class="shows-chapter-name mb-3">Chapter <%= i + 1 %>: <%= course.syllabus[i].chapter %></h5>
+                <% if (course.syllabus && course.syllabus.length > 0) { %>
+                    <% course.syllabus.forEach((chapter, index) => { %>
+                        <div class="chapter-detail" id="chapterDetail<%= index %>" style="display: none;">
+                            <h5 class="shows-chapter-name mb-3">Chapter <%= index + 1 %>: <%= chapter.chapter || "Untitled Chapter" %></h5>
+                            <hr>
                             <div class="lectures">
                                 <iframe 
                                     width="100%" 
                                     height="320" 
-                                    src="https://www.youtube.com/embed/<%= course.syllabus[i].lectureurl || '' %>" 
+                                    src="https://www.youtube.com/embed/<%= chapter.lectureurl || '' %>" 
                                     title="Lecture Video"
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                     allowfullscreen>
                                 </iframe>
                                 <br><br>
-                                <a href="/quiz/<%= course._id %>/<%= i %>" class="btn btn-primary">Quiz</a>
+                                <button class="btn btn-primary shows-quiz-btn">Quiz</button>
                                 <button type="button" class="btn btn-warning shows-notes-btn">Notes</button>
                             </div>
                             <hr>
-
                             <!-- Notes Section -->
-                            <div class="shows-chapter-notes">
-                                <textarea 
-                                    name="syllabus[<%= i %>][notes]" 
-                                    class="chapter-notes" 
-                                    placeholder="Enter your notes here..."
-                                ><%= course.syllabus[i].notes || '' %></textarea>
-                                <div class="notes-btns">
-                                    <button type="submit" class="btn btn-success">Save Notes</button>
-                                    <button 
-                                        type="button" 
-                                        class="btn btn-danger download-pdf-btns"
-                                        onclick="downloadPDF('<%= i%>')"
-                                    >
-                                        <i class="fa-solid fa-download" style="margin-right: 0.3rem;"></i> PDF
-                                    </button>
-                                </div>
-                                <hr>
-                            </div>
-                            <!-- Quiz Section -->
-                            <!-- <div class="shows-quiz-section">
-                                <%for(quizz of course.syllabus[i].quiz){%>
-                                    <div class="shows-quiz mb-4 mt-2">
-                                        <h5><b><%=quizz.qno%>. <%=quizz.qname%></b><h5/>
-                                        <hr>
-                                        <%for(optn of quizz.options){%>
-                                        <input type="radio" id="shows-quiz-option">
-                                        <label for="shows-quiz-option"><%=optn.option%></label>
-                                        <br>
-                                        <%}%>
+                            <form action="/shows/<%=course._id%>?_method=PUT" method="POST">
+                                <div class="shows-chapter-notes">
+                                    <% const userNotes = notes.find(note => note.chapter === chapter.chapter); %>
+                                    <textarea 
+                                        name="chapterNotes" 
+                                        class="chapter-notes" 
+                                        placeholder="Enter your notes here..!"><%= userNotes ? userNotes.notes : ''%></textarea>
+                                    <div class="notes-btns">
+                                            <input type="hidden" name="chapter" value="<%= chapter.chapter %>">
+                                            <button type="submit" class="btn btn-success">Save Notes</button>
+                                        <button 
+                                            type="button" 
+                                            class="btn btn-danger download-pdf-btns"
+                                            onclick="downloadPdfButton('<%= index %>')"
+                                        >
+                                            <i class="fa-solid fa-download" style="margin-right: 0.3rem;"></i> PDF
+                                        </button>
                                     </div>
-                                <%}%>
-                            </div> -->
+                                    <hr>
+                                </div>
+                            </form>
+
+                            <!-- Quiz Section -->
+                            <form action="/submitQuiz" method="POST">
+                                <div class="shows-quiz-section">
+                                    <input type="hidden" name="courseId" value="<%= course._id %>">
+                                    <input type="hidden" name="chapterIndex" value="<%= index %>">
+                                    <% if (chapter.quiz && chapter.quiz.length > 0) { %>
+                                        <% chapter.quiz.forEach((quiz, quizIndex) => { 
+                                            const uniqueId = `quiz-${index}-${quiz.qno}-${quizIndex}`;
+                                        %>
+                                            <div class="shows-quiz mb-4 mt-2">
+                                                <h5><b><%= quiz.qno %>. <%= quiz.qname || "Untitled Question" %></b></h5>
+                                                <hr>
+                                                <% quiz.options.forEach((option, optionIndex) => { %>
+                                                    <input 
+                                                        type="radio" 
+                                                        id="<%= uniqueId %>-<%= optionIndex %>" 
+                                                        name="quiz-<%= index %>-<%= quiz.qno %>" 
+                                                        value="<%= option.option %>" 
+                                                        required>
+                                                    <label for="<%= uniqueId %>-<%= optionIndex %>"><%= option.option %></label>
+                                                    <br>
+                                                <% }); %>
+                                            </div>
+                                        <% }); %>
+                                    <% } else { %>
+                                        <p>No quiz available for this chapter.</p>
+                                    <% } %>
+                                    <% if (currUser) { %>
+                                        <button type="submit" class="btn btn-outline-danger">Submit</button>
+                                    <% } else { %>
+                                        <button type="submit" class="btn btn-outline-danger" disabled>Submit</button>
+                                    <% } %>
+                                </div>
+                                
+                            </form>
+                                                     
                         </div>
-                    <% } %>
-                </form>
+                    <% }); %>
+                <% } else { %>
+                    <p>No chapters available.</p>
+                <% } %>
             </div>
         </div>
     </div>
-
     <br><br><br><br>
 
     <!-- Include jsPDF and html2canvas -->
