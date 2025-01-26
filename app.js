@@ -9,17 +9,21 @@ const path = require("path");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
 const nodemailer = require("nodemailer");
+
 const Courses = require("./models/course");
 const QuizResult = require("./models/quizResult");
 const Review = require("./models/review");
 const Notes = require("./models/notes");
-const initData = require("./init/data");
+const User = require("./models/user");
+const EnrolledCourse = require("./models/enrolled");
+
 const session = require("express-session");
-const mongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const User = require("./models/user");
+
+const initData = require("./init/data");
+const mongoStore = require("connect-mongo");
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/Edux");
