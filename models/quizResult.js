@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
-const quizResultSchema = new mongoose.Schema({
+const quizResultSchema = new mongoose.Schema([
+    {
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     course: { type: mongoose.Schema.Types.ObjectId, ref: "Course" },
     chapter: { type: String },
@@ -13,6 +14,6 @@ const quizResultSchema = new mongoose.Schema({
         set: (value) => parseFloat(value.toFixed(2)) // Round to 2 decimal places
     },
     attemptedAt: { type: Date, default: Date.now },
-}, { timestamps: true });
+}], { timestamps: true });
 
 module.exports = mongoose.model("QuizResult", quizResultSchema);

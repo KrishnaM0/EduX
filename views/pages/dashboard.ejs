@@ -57,10 +57,13 @@
             </div>
             <div class="quiz">
                 <h3 style="margin-bottom : 1rem; text-decoration : overline red;">Quiz Results</h3>
-                <div class="quizr">
-                    <h5>CSS Tutorial for Beginners</h5>
-                    <span><b>83%</b></span>
-                </div>
+                <%for(result of quizResult){%>
+                    <div class="quizr">
+                        <h5><%=result.chapter%></h5>
+                        <span><b><%=result.percentage%></b></span>
+                    </div>
+                    <br>
+                <%}%>
             </div>
         </div>
     </div>

@@ -246,15 +246,54 @@ app.get("/courses", async (req, res) => {
     }
 });
 
+
+// Add review to course
+app.post('/shows/:courseId/reviews', async (req, res) => {
+    let course = await Courses.findById(req.params.courseId);
+    let newReview = new Review(req.body.review);
+    newReview.author = req.user._id;
+    course.reviews.push(newReview);
+    await newReview.save();
+    await course.save();
+    req.flash("success", "New Review Created..!");
+    res.redirect(`/shows/${course._id}`);
+});
+  
+// Delete review from course
+app.delete('/shows/:courseId/reviews/:reviewId', async (req, res) => {
+    let {courseId, reviewId} = req.params;
+    await Courses.findByIdAndUpdate(courseId, {$pull: {reviews : reviewId}});
+    await Review.findByIdAndDelete(reviewId);
+    req.flash("success", "Review Deleted..!");
+    res.redirect(`/shows/${courseId}`);
+});
+
+
+
+
 app.get("/dashboard", isLoggedIn, async (req, res) => {
     try {
         const courses = await Courses.find();
-        res.render("pages/dashboard", { courses });
+        // Fetch quiz results for the logged-in user
+        const quizResult = await QuizResult.find({ user: req.user._id }).populate('course');
+        
+        res.render("pages/dashboard", { courses, quizResult });
     } catch (error) {
-        console.error("Error loading dashboard:", error);
-        res.status(500).send("Error loading dashboard");
+        console.error("Error fetching dashboard data:", error);
+        res.status(500).send("Error loading the dashboard");
     }
 });
+
+// app.get("/dashboard", isLoggedIn, async (req, res) => {
+//     try {
+//         const courses = await Courses.find();
+//         const quizResult = await QuizResult.find(req.user._id);
+//         res.render("pages/dashboard", { courses, quizResult });
+//     } catch (error) {
+//         console.error("Error loading dashboard:", error);
+//         res.status(500).send("Error loading dashboard");
+//     }
+// });
 
 // Contact form handling
 app.get("/contact", (req, res) => {
@@ -289,29 +328,6 @@ app.post("/contact", async (req, res) => {
         res.status(500).send("There was an error sending your message. Please try again later.");
     }
 });
-
-
-// Add review to course
-app.post('/shows/:courseId/reviews', async (req, res) => {
-    let course = await Courses.findById(req.params.courseId);
-    let newReview = new Review(req.body.review);
-    newReview.author = req.user._id;
-    course.reviews.push(newReview);
-    await newReview.save();
-    await course.save();
-    req.flash("success", "New Review Created..!");
-    res.redirect(`/shows/${course._id}`);
-});
-  
-// Delete review from course
-app.delete('/shows/:courseId/reviews/:reviewId', async (req, res) => {
-    let {courseId, reviewId} = req.params;
-    await Courses.findByIdAndUpdate(courseId, {$pull: {reviews : reviewId}});
-    await Review.findByIdAndDelete(reviewId);
-    req.flash("success", "Review Deleted..!");
-    res.redirect(`/shows/${courseId}`);
-});
-
 
 // Server Listener
 app.listen(8080, () => {
