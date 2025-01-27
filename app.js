@@ -90,6 +90,16 @@ const isLoggedIn = (req, res, next) => {
     next();
 };
 
+app.delete('/shows/:courseId/reviews/:reviewId', async (req, res, next) => {
+    let {courseId, reviewId} = req.params;
+    let review = await Review.findById(reviewId);
+    if(!review.author.equals(res.locals.currUser._id)){
+        req.flash("error", "You are not the author of this review!");
+        return res.redirect(`/shows/${courseId}`);
+    }
+    next();
+});
+
 // Routes
 app.get("/", async (req, res) => {
     try {
