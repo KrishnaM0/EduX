@@ -98,6 +98,8 @@
 .home-text{
     text-align: center;
     padding: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: -0.5rem;
 }
 .home-container,
 .course-container{
@@ -500,7 +502,7 @@
     background-color: rgba(159, 200, 236, 0.3);
     font-weight: bold;
     /* color: #ff0000;  */
-    border-radius: 1rem;
+    /* border-radius: 1rem; */
     border: none;
     box-shadow: 0rem 0rem 0.2rem rgba(0, 0, 0, 0.3);
 }
@@ -652,6 +654,13 @@
     width: 40% !important;
     margin-top : 0.5rem;
 }
+
+.home-page{
+    border-bottom-right-radius: 3rem;
+    border-bottom-left-radius: 3rem;
+    box-shadow: 0rem 0rem 1rem grey;
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
