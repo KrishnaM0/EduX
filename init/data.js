@@ -4,7 +4,6 @@ let data = [
       tutor: 'Kunal Kushwaha',
       image: 'https://i.ytimg.com/vi/rZ41y93P2Qo/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCVLdFTYGBOx_XHYIv_sHrVY9shRw',
       tutorlink: 'https://www.youtube.com/@KunalKushwaha',
-      rating: 4.8,
       syllabus: [
         {
           chapter: 'Introduction to Programming',
@@ -482,7 +481,6 @@ let data = [
       tutor: 'Apna College',
       image: 'https://i.ytimg.com/vi/l1EssrLxt7E/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBeHsL0IAwmp4nDP4YTVkzvG9Z2OA',
       tutorlink: 'https://www.youtube.com/@ApnaCollegeOfficial',
-      rating: 4.2,
       syllabus: [
         {
           chapter: 'HTML Tutorial for Beginners',
@@ -611,7 +609,6 @@ let data = [
       tutor: 'Telusko',
       image: 'https://i.ytimg.com/vi/YfO28Ihehbk/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCqmWkLQL0HmrsMlt7HW-WzTW5W2w',
       tutorlink: 'https://www.youtube.com/@Telusko',
-      rating: 4.6,
       syllabus: [
         {
           chapter: 'Python Tutorial',
@@ -658,6 +655,539 @@ let data = [
         },
       ],
     },
-  ];
+     // New Course 2 - Machine Learning
+    {
+      title: 'Machine Learning Crash Course',
+      tutor: 'Edureka',
+      image: 'https://i.ytimg.com/vi/GwIo3gDZCVQ/hq720.jpg?sqp=-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDTvg67I9otESt8qGBe-zlcgKXIEg',
+      tutorlink: 'https://www.youtube.com/@edurekaIN',
+      syllabus: [
+          {
+            chapter: 'Introduction to Machine Learning',
+            lectureurl: 'GwIo3gDZCVQ',
+            notes: 'Machine Learning enables computers to learn from data.',
+            quiz: [
+              {
+                qno: 1,
+                qname: 'Which library is commonly used for ML in Python?',
+                options: [
+                  { option: 'Pandas' },
+                  { option: 'NumPy' },
+                  { option: 'Matplotlib' },
+                  { option: 'Scikit-learn' }
+                ],
+                answer: 'Scikit-learn'
+              },
+              {
+                qno: 2,
+                qname: 'What is Machine Learning?',
+                options: [
+                  { option: 'A programming language' },
+                  { option: 'A subset of AI' },
+                  { option: 'A new database system' },
+                  { option: 'An operating system' }
+                ],
+                answer: 'A subset of AI'
+              },
+              {
+                qno: 3,
+                qname: 'Which type of learning requires labeled data?',
+                options: [
+                  { option: 'Supervised Learning' },
+                  { option: 'Unsupervised Learning' },
+                  { option: 'Reinforcement Learning' },
+                  { option: 'Self-Supervised Learning' }
+                ],
+                answer: 'Supervised Learning'
+              }
+            ]
+          },
+          {
+            chapter: 'Supervised Learning',
+            lectureurl: '7eh4d6sabA0',
+            notes: 'Supervised Learning uses labeled data.',
+            quiz: [
+              {
+                qno: 1,
+                qname: 'Which algorithm is best for classification?',
+                options: [
+                  { option: 'Linear Regression' },
+                  { option: 'K-Nearest Neighbors' },
+                  { option: 'K-Means Clustering' },
+                  { option: 'Principal Component Analysis' }
+                ],
+                answer: 'K-Nearest Neighbors'
+              },
+              {
+                qno: 2,
+                qname: 'Which of these is a supervised learning algorithm?',
+                options: [
+                  { option: 'Decision Trees' },
+                  { option: 'K-Means Clustering' },
+                  { option: 'Apriori Algorithm' },
+                  { option: 'DBSCAN' }
+                ],
+                answer: 'Decision Trees'
+              },
+              {
+                qno: 3,
+                qname: 'What is the main goal of supervised learning?',
+                options: [
+                  { option: 'To classify data or make predictions' },
+                  { option: 'To find hidden patterns in data' },
+                  { option: 'To let an agent learn from rewards' },
+                  { option: 'To sort unstructured data' }
+                ],
+                answer: 'To classify data or make predictions'
+              }
+            ]
+          },
+          {
+            chapter: 'Unsupervised Learning',
+            lectureurl: 'D6gtZrsYi6c',
+            notes: 'Unsupervised Learning works with unlabeled data.',
+            quiz: [
+              {
+              qno: 1,
+              qname: 'Which algorithm is used for clustering?',
+              options: [
+                { option: 'K-Means' },
+                { option: 'Decision Trees' },
+                { option: 'Linear Regression' },
+                { option: 'Support Vector Machines' }
+              ],
+              answer: 'K-Means'
+            },
+          {
+            qno: 2,
+            qname: 'Which of these is an application of unsupervised learning?',
+            options: [
+              { option: 'Spam filtering' },
+              { option: 'Customer segmentation' },
+              { option: 'Predicting house prices' },
+              { option: 'Fraud detection' }
+            ],
+            answer: 'Customer segmentation'
+          },
+          {
+            qno: 3,
+            qname: 'Which technique is commonly used for dimensionality reduction?',
+            options: [
+              { option: 'PCA (Principal Component Analysis)' },
+              { option: 'Naïve Bayes' },
+              { option: 'K-Nearest Neighbors' },
+              { option: 'Random Forest' }
+            ],
+            answer: 'PCA (Principal Component Analysis)'
+          }
+        ]
+      },
+      {
+        chapter: 'Reinforcement Learning',
+        lectureurl: 'ELE2_Mftqoc',
+        notes: 'Reinforcement Learning is based on rewards and punishments.',
+        quiz: [
+          {
+            qno: 1,
+            qname: 'What is Reinforcement Learning?',
+            options: [
+              { option: 'A type of unsupervised learning' },
+              { option: 'A learning approach based on rewards and punishments' },
+              { option: 'A supervised learning technique' },
+              { option: 'A way to train neural networks' }
+            ],
+            answer: 'A learning approach based on rewards and punishments'
+          },
+          {
+            qno: 2,
+            qname: 'What does Q-learning stand for?',
+            options: [
+              { option: 'Quantum Learning' },
+              { option: 'Quality Learning' },
+              { option: 'Queue-based Learning' },
+              { option: 'Value-based Learning' }
+            ],
+            answer: 'Value-based Learning'
+          },
+          {
+            qno: 3,
+            qname: 'Which of these is a reinforcement learning algorithm?',
+            options: [
+              { option: 'Deep Q-Networks' },
+              { option: 'Naïve Bayes' },
+              { option: 'K-Means' },
+              { option: 'Gradient Boosting' }
+            ],
+            answer: 'Deep Q-Networks'
+          }
+        ]
+      },
+      {
+        chapter: 'Deep Learning & Neural Networks',
+        lectureurl: 'aircAruvnKk',
+        notes: 'Deep Learning is based on artificial neural networks.',
+        quiz: [
+          {
+            qno: 1,
+            qname: 'Which neural network is best for image recognition?',
+            options: [
+              { option: 'CNN (Convolutional Neural Network)' },
+              { option: 'RNN (Recurrent Neural Network)' },
+              { option: 'ANN (Artificial Neural Network)' },
+              { option: 'DNN (Deep Neural Network)' }
+            ],
+            answer: 'CNN (Convolutional Neural Network)'
+          },
+          {
+            qno: 2,
+            qname: 'Which activation function is commonly used in hidden layers of deep learning?',
+            options: [
+              { option: 'ReLU' },
+              { option: 'Softmax' },
+              { option: 'Sigmoid' },
+              { option: 'Tanh' }
+            ],
+            answer: 'ReLU'
+          },
+          {
+            qno: 3,
+            qname: 'Which optimizer is commonly used in deep learning?',
+            options: [
+              { option: 'Gradient Descent' },
+              { option: 'Adam' },
+              { option: 'RMSProp' },
+              { option: 'All of the above' }
+            ],
+            answer: 'All of the above'
+          },
+        ],
+      },
+    ],
+  },
+  
+
+  {
+    title: 'Cyber Security Essentials',
+    tutor: 'Simplilearn',
+    image: 'https://i.ytimg.com/vi/_l1is1krZw4/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLANra-mwQvefYqMaqxRW22OgpVoTw',
+    tutorlink: 'https://www.youtube.com/@SimplilearnOfficial',
+    syllabus: [
+        {
+            chapter: 'Introduction to Cyber Security',
+            lectureurl: 'inWWhr5tnEA',
+            notes: 'Cyber Security is crucial in today’s digital world. It involves protecting systems, networks, and data from cyber threats.',
+            quiz: [
+                {
+                    qno: 1,
+                    qname: 'What is the main goal of Cyber Security?',
+                    options: [
+                        { option: 'Data Integrity' },
+                        { option: 'Confidentiality' },
+                        { option: 'Availability' },
+                        { option: 'All of the above' }
+                    ],
+                    answer: 'All of the above'
+                },
+                {
+                    qno: 2,
+                    qname: 'Which of the following is NOT a Cyber Security measure?',
+                    options: [
+                        { option: 'Using firewalls' },
+                        { option: 'Keeping software up to date' },
+                        { option: 'Using weak passwords' },
+                        { option: 'Encrypting sensitive data' }
+                    ],
+                    answer: 'Using weak passwords'
+                },
+                {
+                    qno: 3,
+                    qname: 'Which is an example of Multi-Factor Authentication (MFA)?',
+                    options: [
+                        { option: 'Username & password' },
+                        { option: 'Biometric scan & password' },
+                        { option: 'Remembering complex passwords' },
+                        { option: 'Using a single security question' }
+                    ],
+                    answer: 'Biometric scan & password'
+                }
+            ]
+        },
+        {
+            chapter: 'Types of Cyber Attacks',
+            lectureurl: 'nG9v3RSSXTo', // Fixed and replaced with a relevant lecture
+            notes: 'Common cyber threats include malware, phishing, ransomware, and social engineering attacks.',
+            quiz: [
+                {
+                    qno: 1,
+                    qname: 'Which is an example of a phishing attack?',
+                    options: [
+                        { option: 'Brute Force Attack' },
+                        { option: 'Fake email asking for credentials' },
+                        { option: 'DoS Attack' },
+                        { option: 'Keylogger' }
+                    ],
+                    answer: 'Fake email asking for credentials'
+                },
+                {
+                    qno: 2,
+                    qname: 'What is ransomware?',
+                    options: [
+                        { option: 'A type of firewall' },
+                        { option: 'A software that encrypts user files and demands payment' },
+                        { option: 'A phishing email' },
+                        { option: 'A type of antivirus program' }
+                    ],
+                    answer: 'A software that encrypts user files and demands payment'
+                },
+                {
+                    qno: 3,
+                    qname: 'What does a DoS attack do?',
+                    options: [
+                        { option: 'Steals data from a server' },
+                        { option: 'Shuts down a network by overwhelming it with traffic' },
+                        { option: 'Encrypts a user’s files' },
+                        { option: 'Detects malware' }
+                    ],
+                    answer: 'Shuts down a network by overwhelming it with traffic'
+                }
+            ]
+        },
+        {
+            chapter: 'Cyber Security Best Practices',
+            lectureurl: 'njPY7pQTRWg',
+            notes: 'Cyber Security best practices include using strong passwords, enabling MFA, avoiding suspicious emails, and keeping software updated.',
+            quiz: [
+                {
+                    qno: 1,
+                    qname: 'Which of these is a strong password?',
+                    options: [
+                        { option: '123456' },
+                        { option: 'P@ssw0rd123!' },
+                        { option: 'password' },
+                        { option: 'qwerty' }
+                    ],
+                    answer: 'P@ssw0rd123!'
+                },
+                {
+                    qno: 2,
+                    qname: 'Why should you avoid using public Wi-Fi for sensitive activities?',
+                    options: [
+                        { option: 'It is too slow' },
+                        { option: 'It is usually encrypted' },
+                        { option: 'Hackers can intercept data' },
+                        { option: 'It costs too much' }
+                    ],
+                    answer: 'Hackers can intercept data'
+                },
+                {
+                    qno: 3,
+                    qname: 'Which of these is NOT a recommended security practice?',
+                    options: [
+                        { option: 'Using the same password for multiple accounts' },
+                        { option: 'Enabling Multi-Factor Authentication' },
+                        { option: 'Regularly updating software and security patches' },
+                        { option: 'Backing up important data' }
+                    ],
+                    answer: 'Using the same password for multiple accounts'
+                }
+            ]
+        },
+        {
+            chapter: 'Ethical Hacking & Penetration Testing',
+            lectureurl: 'co5CY74lMQM',
+            notes: 'Ethical hacking involves testing security systems to identify vulnerabilities before hackers do.',
+            quiz: [
+                {
+                    qno: 1,
+                    qname: 'What is the purpose of ethical hacking?',
+                    options: [
+                        { option: 'To steal data' },
+                        { option: 'To improve security by finding vulnerabilities' },
+                        { option: 'To create viruses' },
+                        { option: 'To hack personal accounts' }
+                    ],
+                    answer: 'To improve security by finding vulnerabilities'
+                },
+                {
+                    qno: 2,
+                    qname: 'What is penetration testing?',
+                    options: [
+                        { option: 'A method to scan for vulnerabilities' },
+                        { option: 'A test to check a network’s security by simulating an attack' },
+                        { option: 'A process to install firewalls' },
+                        { option: 'A method to encrypt sensitive files' }
+                    ],
+                    answer: 'A test to check a network’s security by simulating an attack'
+                },
+                {
+                    qno: 3,
+                    qname: 'Which tool is commonly used in penetration testing?',
+                    options: [
+                        { option: 'Photoshop' },
+                        { option: 'Wireshark' },
+                        { option: 'Kali Linux' },
+                        { option: 'Notepad' }
+                    ],
+                    answer: 'Kali Linux'
+                },
+            ],
+        },
+    ],
+  },
+  {
+    title: 'Full-Stack Web Development',
+    tutor: 'freeCodeCamp',
+    image: 'https://i.ytimg.com/vi/O3BUHwfHf84/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLD8h9LaMKX5Mgc6T7lai59xgsYeEQ', 
+    tutorlink: 'https://www.youtube.com/@freeCodeCamp',
+    rating: 4.8,
+    syllabus: [
+      {
+        chapter: 'Introduction to MERN Stack',
+        lectureurl: '7CqJlxBYj-M',
+        notes: 'MERN Stack includes MongoDB, Express.js, React, and Node.js to build full-stack applications.',
+        quiz: [
+          {
+            qno: 1,
+            qname: 'What does MERN stand for?',
+            options: [
+              { option: 'MongoDB, Express.js, React, Node.js' },
+              { option: 'MySQL, Express.js, React, Node.js' },
+              { option: 'MongoDB, Ember.js, React, Node.js' },
+              { option: 'MongoDB, Express.js, Redux, Node.js' }
+            ],
+            answer: 'MongoDB, Express.js, React, Node.js'
+          },
+          {
+            qno: 2,
+            qname: 'Which of the following is a backend framework in MERN?',
+            options: [
+              { option: 'React' },
+              { option: 'MongoDB' },
+              { option: 'Express.js' },
+              { option: 'Redux' }
+            ],
+            answer: 'Express.js'
+          }
+        ]
+      },
+      {
+        chapter: 'Frontend Development with React',
+        lectureurl: 'bMknfKXIFA8',
+        notes: 'React.js is a JavaScript library used for building dynamic user interfaces.',
+        quiz: [
+          {
+            qno: 1,
+            qname: 'Which command is used to create a new React app?',
+            options: [
+              { option: 'npm create react-app my-app' },
+              { option: 'npx create-react-app my-app' },
+              { option: 'npm start react-app' },
+              { option: 'node create-react-app my-app' }
+            ],
+            answer: 'npx create-react-app my-app'
+          },
+          {
+            qno: 2,
+            qname: 'What is the primary purpose of React components?',
+            options: [
+              { option: 'To define the structure of the database' },
+              { option: 'To create reusable UI elements' },
+              { option: 'To manage backend logic' },
+              { option: 'To handle HTTP requests' }
+            ],
+            answer: 'To create reusable UI elements'
+          },
+        ],
+        },
+        {
+          chapter: 'Backend Development with Node.js and Express',
+          lectureurl: 'Oe421EPjeBE',
+          notes: 'Express.js is a lightweight framework for building web servers with Node.js.',
+          quiz: [
+            {
+              qno: 1,
+              qname: 'Which package is used in Express.js to handle HTTP requests?',
+              options: [
+                { option: 'body-parser' },
+                { option: 'mongoose' },
+                { option: 'cors' },
+                { option: 'jsonwebtoken' }
+              ],
+              answer: 'body-parser'
+            },
+            {
+              qno: 2,
+              qname: 'Which command is used to install Express.js?',
+              options: [
+                { option: 'npm install express' },
+                { option: 'npm create express' },
+                { option: 'npx install express' },
+                { option: 'node install express' }
+              ],
+              answer: 'npm install express'
+            }
+          ]
+        },
+        {
+          chapter: 'Database Management with MongoDB',
+          lectureurl: 'oSIv-E60NiU',
+          notes: 'MongoDB is a NoSQL database used in MERN applications to store and manage data.',
+          quiz: [
+            {
+              qno: 1,
+              qname: 'Which command is used to start MongoDB?',
+              options: [
+                { option: 'mongod' },
+                { option: 'mongo start' },
+                { option: 'start mongo' },
+                { option: 'mongodb' }
+              ],
+              answer: 'mongod'
+            },
+            {
+              qno: 2,
+              qname: 'What is Mongoose used for?',
+              options: [
+                { option: 'To create MongoDB databases' },
+                { option: 'To connect MongoDB with Express.js' },
+                { option: 'To perform frontend operations' },
+                { option: 'To write CSS for React' }
+              ],
+              answer: 'To connect MongoDB with Express.js'
+            }
+          ]
+        },
+        {
+          chapter: 'Deploying a MERN Stack Application',
+          lectureurl: 'O3BUHwfHf84',
+          notes: 'Learn how to deploy a MERN application using platforms like Heroku or Vercel.',
+          quiz: [
+            {
+              qno: 1,
+              qname: 'Which platform is commonly used to deploy MERN applications?',
+              options: [
+                { option: 'Heroku' },
+                { option: 'Jenkins' },
+                { option: 'Postman' },
+                { option: 'PyCharm' }
+              ],
+              answer: 'Heroku'
+            },
+            {
+              qno: 2,
+              qname: 'Which file is required for deployment in a MERN app?',
+              options: [
+                { option: 'package.json' },
+                { option: 'app.js' },
+                { option: '.env' },
+                { option: 'server.js' }
+              ],
+              answer: 'package.json'
+            }
+          ]
+        }
+      ]
+    },
+];
 
   module.exports = data;

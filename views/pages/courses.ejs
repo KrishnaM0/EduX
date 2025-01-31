@@ -16,7 +16,7 @@
         <div class="course-container">
             <% if (courses.length > 0) { %>
                 <% for (let course of courses) { %>
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" style="width: 20rem;">
                         <img 
                             src="<%= course.image || '/images/default-course.jpg' %>" 
                             class="card-img-top" 
@@ -36,7 +36,7 @@
                                 <br>
                                 <i class="fa-solid fa-star"></i> <%= course.rating %> / 5
                             </p>
-                            <a href="/shows/<%= course._id %>" class="btn btn-primary">Explore</a>
+                            <a href="/shows/<%= course._id %>" class="btn btn-primary explore-btn">Explore</a>
                         </div>
                     </div>
                 <% } %>
@@ -45,6 +45,6 @@
             <% } %>
         </div>
     </div>
-
+    <br><br><br><br>
     <%- include("../includes/footer.ejs") %>
 </body>

@@ -15,13 +15,18 @@
             <% } else { %>
                 <p>No chapters available.</p>
             <% } %>
+            <br><br><br><br><br><br>
         </div>
-
         <!-- Main Content Area -->
         <div class="shows-content">
             <!-- Overview Section -->
             <div class="shows-chapter-content">
                 <div class="overview">
+                    <div class="shows-chapters-nav">
+                        <h5>Overview</h5>
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                    <hr>
                     <img 
                         src="<%= course.image || '/images/default-course.jpg' %>" 
                         class="shows-chapter-img mt-0" 
@@ -100,12 +105,15 @@
                 <% if (course.syllabus && course.syllabus.length > 0) { %>
                     <% course.syllabus.forEach((chapter, index) => { %>
                         <div class="chapter-detail" id="chapterDetail<%= index %>" style="display: none;">
-                            <h5 class="shows-chapter-name mb-3">Chapter <%= index + 1 %>: <%= chapter.chapter || "Untitled Chapter" %></h5>
+                            <div class="shows-chapters-nav">
+                                <h5 class="shows-chapter-name mb-3"><span style="text-decoration:overline red;">Chapter <%= index + 1 %></span> : <%= chapter.chapter || "Untitled Chapter" %></h5>
+                                <i class="fa-solid fa-bars"></i>
+                            </div>
                             <hr>
                             <div class="lectures">
                                 <iframe 
-                                    width="100%" 
-                                    height="320" 
+                                    width="700px" 
+                                    height="320px" 
                                     src="https://www.youtube.com/embed/<%= chapter.lectureurl || '' %>" 
                                     title="Lecture Video"
                                     frameborder="0" 

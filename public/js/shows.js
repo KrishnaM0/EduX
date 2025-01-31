@@ -5,6 +5,8 @@ const showsChapterNotes = document.querySelectorAll(".shows-chapter-notes");
 const showsNotesBtn = document.querySelectorAll(".shows-notes-btn");
 const showsQuizBtn = document.querySelectorAll(".shows-quiz-btn");
 const showsQuizSection = document.querySelectorAll(".shows-quiz-section");
+const showsChaptersToggleButton = document.querySelectorAll(".fa-bars");
+const showsChaptersNav = document.querySelector(".shows-chapters");
 
 chaptersSelected.forEach(chapters => {
     chapters.addEventListener('click', function() {
@@ -65,6 +67,18 @@ function showOverview() {
         overview.style.display = 'block';
     }
 }
+
+// Select chapter toggle button (fa-bars) and sidebar
+showsChaptersToggleButton.forEach((button) => {
+    button.addEventListener("click", () => {
+        // Toggle visibility of chapters sidebar
+        if (showsChaptersNav.classList.contains('show-chapters')) {
+            showsChaptersNav.classList.remove('show-chapters');
+        } else {
+            showsChaptersNav.classList.add('show-chapters');
+        };
+    });
+});
 
 
 downloadPdfButton.forEach((button, index) => {

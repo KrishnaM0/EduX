@@ -298,16 +298,6 @@ app.get("/dashboard", isLoggedIn, async (req, res) => {
     }
 });
 
-// app.get("/dashboard", isLoggedIn, async (req, res) => {
-//     try {
-//         const courses = await Courses.find();
-//         const quizResult = await QuizResult.find(req.user._id);
-//         res.render("pages/dashboard", { courses, quizResult });
-//     } catch (error) {
-//         console.error("Error loading dashboard:", error);
-//         res.status(500).send("Error loading dashboard");
-//     }
-// });
 
 // Contact form handling
 app.get("/contact", (req, res) => {
