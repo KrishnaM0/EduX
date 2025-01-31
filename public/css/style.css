@@ -158,10 +158,7 @@
     color : gray;
     font-weight: 500;
 }
-.enrolled{
-    border-right : 0.15rem solid grey;
-    width : 50%;
-}
+
 .profile img{
     width : 13rem;
     height : 13rem;
@@ -169,13 +166,8 @@
 }
 .profile{
     text-align: center;
-    margin-right : 2rem;
 }
-.user-enrolled{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
+
 .user-links a{
     font-size: 1.6rem;
     text-decoration: none;
@@ -187,26 +179,7 @@
 .card-body .btn-primary{
     color : white;
 }
-.evaluation{
-    display: flex;
-    justify-content: space-around;
-    margin-top : 2rem;
-}
-.quizr{
-    padding : 0.8rem;
-    /* margin : 1rem; */
-    padding-left : 1rem;
-    padding-right : 1rem;
 
-    border: 0.05rem solid grey;
-    width : 25rem;
-    border-radius: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(109.6deg, rgb(229, 68, 121) 11.2%, rgb(157, 55, 206) 91.2%);
-    color : white;
-}
 .search-form{
     padding: 1rem;
     margin: 1rem;
@@ -342,9 +315,7 @@
     background-color: rgba(65, 63, 63, 0.2);
     border-radius: 1rem;
 }
-/* .lectures{
-    width: 40rem;
-} */
+
 .chapter-notes{
     border: 0.1rem solid grey;
     border-radius: 1rem;
@@ -363,8 +334,6 @@
 .active-chapter{
     background-color: rgba(159, 200, 236, 0.3);
     font-weight: bold;
-    /* color: #ff0000;  */
-    /* border-radius: 1rem; */
     border: none;
     box-shadow: 0rem 0rem 0.2rem rgba(0, 0, 0, 0.3);
 }
@@ -638,6 +607,43 @@ footer {
     color:#0039f6;
     font-size: 1.5rem;
 }
+.dashboards-quiz-results{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.dashboards-quiz h3{
+    text-align: center;
+}
+.dashboard-attendance{
+    margin: 1rem;
+    padding: 1rem;
+}
+.dashboard-attendance h3{
+    text-align: center;
+}
+.attendance-range{
+    width: 50%;
+    margin: auto;
+}
+.quiz-result-range-div{
+    width: 100%;
+}
+.enrolled-courses h3{
+    text-align: center;
+}
+.enrolled{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.dashboard-container{
+    border: 0.15rem solid rgba(128, 128, 128, 0.5);
+    margin: 2rem;
+    border-radius: 1rem;
+    /* box-shadow: 0rem 0rem 0.7rem rgba(40, 39, 39, 0.5); */
+}
+
 
 
 /* Rotation Animation */
