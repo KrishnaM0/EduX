@@ -56,7 +56,7 @@
             <div class="dashboards-quiz-results">
                 <% for (let quizCourses of quizResult) { %>
                     <% if (quizCourses.course) { %>  <!-- ✅ Ensure course is not null -->
-                        <div class="card mb-3" style="max-width: 30rem;">
+                        <div class="card mb-3" style="max-width: 32rem;">
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img style="height:100%;" src="<%= quizCourses.course.image || '/images/default-course.jpg' %>" class="img-fluid rounded-start dashboards-card-img" alt="img">

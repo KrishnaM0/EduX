@@ -773,6 +773,5 @@ footer {
     .dashboards-card-img{
         border-top-right-radius: 0.3rem !important;
         border-bottom-left-radius: 0rem !important;
-        object-fit: cover !important;
     }
 }
