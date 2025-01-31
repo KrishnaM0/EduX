@@ -645,7 +645,6 @@ footer {
 }
 
 
-
 /* Rotation Animation */
 @keyframes rotateX {
     0% {
@@ -765,5 +764,15 @@ footer {
     }
     .alert{
         width: 90% !important;
+    }
+    .dashboard-container{
+        margin: 1rem;
+        padding : 0.5rem;
+        border: none;
+    }
+    .dashboards-card-img{
+        border-top-right-radius: 0.3rem !important;
+        border-bottom-left-radius: 0rem !important;
+        object-fit: cover !important;
     }
 }
