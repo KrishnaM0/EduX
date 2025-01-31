@@ -160,7 +160,12 @@ app.get("/shows/:id", async (req, res) => {
         if (!course) {
             return res.status(404).send("Course not found");
         };
-        res.render("pages/shows", { course, notes, review });
+        let isEnrolled = false;
+        if (req.user) {
+            const existingEnrollment = await EnrolledCourse.findOne({ user: req.user._id, course: id });
+            isEnrolled = !!existingEnrollment;
+        }
+        res.render("pages/shows", { course, notes, review, isEnrolled });
     } catch (error) {
         console.error("Error fetching course details:", error);
         res.status(500).send("Error loading the course details");
@@ -168,7 +173,7 @@ app.get("/shows/:id", async (req, res) => {
 });
 
 // Save Notes
-app.put("/shows/:courseId", isLoggedIn, async (req, res) => {
+app.put("/shows/:courseId/notes", isLoggedIn, async (req, res) => {
     const { courseId } = req.params;
     const { chapterNotes } = req.body; // Ensure the body contains chapter and notes
     const { chapter } = req.body;
@@ -233,6 +238,24 @@ app.post("/submitQuiz", isLoggedIn, async (req, res) => {
         });
         await quizResult.save();
         const percentages = (correctAnswers / totalQuestions) * 100;
+
+
+        // Count total quizzes in the course
+        const courseforquiz = await Courses.findById(courseId);
+        // const totalQuizzes = courseforquiz ? courseforquiz.syllabus.reduce((count, chapter) => count + chapter.quiz.length, 0) : 0;
+        const totalQuizzes = courseforquiz ? courseforquiz.syllabus.length : 0;
+        // Count quizzes attempted by user
+        const completedQuizzes  = await QuizResult.countDocuments({ user: req.user._id, course: courseId });
+
+        // Calculate course progress
+        const progress = Math.round((completedQuizzes  / totalQuizzes) * 100);
+
+        // Update enrolled course progress
+        await EnrolledCourse.findOneAndUpdate(
+            { user: req.user._id, course: courseId },
+            { progress, lastAccessed: new Date() },
+            { new: true }
+        );
         req.flash("success", `Quiz completed! You scored ${percentages.toFixed(2)}%.`);
         res.redirect(`/shows/${courseId}`);
     } catch (err) {
@@ -283,15 +306,44 @@ app.delete('/shows/:courseId/reviews/:reviewId', async (req, res) => {
 });
 
 
+// Enroll in a course
+app.post("/enroll/:courseId", isLoggedIn, async (req, res) => {
+    try {
+        const userId = req.user._id; // Get logged-in user's ID
+        const courseId = req.params.courseId;
 
+        // Check if the user is already enrolled
+        const existingEnrollment = await EnrolledCourse.findOne({ user: userId, course: courseId });
+
+        if (existingEnrollment) {
+            req.flash("error", "You are already enrolled in this course.");
+            return res.redirect(`/shows/${courseId}`);
+        }
+
+        // Create new enrollment
+        const newEnrollment = new EnrolledCourse({
+            user: userId,
+            course: courseId,
+        });
+
+        await newEnrollment.save();
+        req.flash("success", "Successfully enrolled in the course!");
+        res.redirect(`/dashboard`);
+    } catch (error) {
+        console.error(error);
+        req.flash("error", "Something went wrong.");
+        res.redirect("back");
+    }
+});
 
 app.get("/dashboard", isLoggedIn, async (req, res) => {
     try {
         const courses = await Courses.find();
         // Fetch quiz results for the logged-in user
         const quizResult = await QuizResult.find({ user: req.user._id }).populate('course');
+        const enrolledCourses = await EnrolledCourse.find({ user: req.user._id }).populate("course");
         
-        res.render("pages/dashboard", { courses, quizResult });
+        res.render("pages/dashboard", { courses, quizResult, enrolledCourses });
     } catch (error) {
         console.error("Error fetching dashboard data:", error);
         res.status(500).send("Error loading the dashboard");

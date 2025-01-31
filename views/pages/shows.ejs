@@ -48,7 +48,17 @@
                         <br>
                         <i class="fa-solid fa-star"></i> / 5
                     </p>
-                    <button type="button" class="btn btn-success">Enroll Now</button>
+                    <% if (currUser) { %>
+                        <% if (isEnrolled) { %>
+                            <button type="button" class="btn btn-secondary" disabled>Enrolled</button>
+                        <% } else { %>
+                            <form action="/enroll/<%=course._id%>" method="POST">
+                                <button type="submit" class="btn btn-success">Enroll Now</button>
+                            </form>
+                        <% } %>
+                    <% } else { %>
+                        <a href="/login" class="btn btn-primary">Login to Enroll</a>
+                    <% } %>
                     <hr>
                     <% if(currUser){%>
                         <div class = "review mb-3">
@@ -129,21 +139,20 @@
                             </div>
                             <hr>
                             <!-- Notes Section -->
-                            <form action="/shows/<%=course._id%>?_method=PUT" method="POST">
+                            <form action="/shows/<%=course._id%>/notes?_method=put" method="POST">
                                 <div class="shows-chapter-notes">
-                                    <% const userNotes = notes.find(note => note.chapter === chapter.chapter); %>
+                                    <% let userNotes = "";%>
+                                    <%if(currUser){%>
+                                        <%userNotes = notes.find(note => note.user.toString() === currUser._id.toString() && note.chapter === chapter.chapter); %>
+                                    <%}%>
                                     <textarea 
                                         name="chapterNotes" 
                                         class="chapter-notes" 
-                                        placeholder="Enter your notes here..!"><%= userNotes ? userNotes.notes : ''%></textarea>
+                                        placeholder="Enter your notes here..!"><%= userNotes ? userNotes.notes : '' %></textarea>
                                     <div class="notes-btns">
-                                            <input type="hidden" name="chapter" value="<%= chapter.chapter %>">
-                                            <button type="submit" class="btn btn-success">Save Notes</button>
-                                        <button 
-                                            type="button" 
-                                            class="btn btn-danger download-pdf-btns"
-                                            onclick="downloadPdfButton('<%= index %>')"
-                                        >
+                                        <input type="hidden" name="chapter" value="<%= chapter.chapter %>">
+                                        <button type="submit" class="btn btn-success">Save Notes</button>
+                                        <button type="button" class="btn btn-danger download-pdf-btns" onclick="downloadPdfButton('<%= index %>')">
                                             <i class="fa-solid fa-download" style="margin-right: 0.3rem;"></i> PDF
                                         </button>
                                     </div>
@@ -179,9 +188,12 @@
                                         <p>No quiz available for this chapter.</p>
                                     <% } %>
                                     <% if (currUser) { %>
-                                        <button type="submit" class="btn btn-outline-danger">Submit</button>
+                                        <%if(isEnrolled){%>
+                                            <button type="submit" class="btn btn-outline-danger">Submit</button>
+                                        <%}%>
                                     <% } else { %>
                                         <button type="submit" class="btn btn-outline-danger" disabled>Submit</button>
+                                        <small style="color: red;"><b>Login &amp; Enroll now for submitting the quiz</b></small>
                                     <% } %>
                                 </div>
                                 
