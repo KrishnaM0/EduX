@@ -1,3 +1,18 @@
-<div class = "chatbot">
-    <i class="fa-brands fa-rocketchat"></i>
+<div class="chatbot">
+    <i class="fa-brands fa-rocketchat chatbot-icon"></i>
 </div>
+
+<div class="chatbot-div hidden">
+    <div class="chatbot-header">
+        <h5>EduX AI Chatbot</h5>
+        <i class="fa-solid fa-times close-chatbot"></i>
+    </div>
+    <div class="chatbot-messages">
+        <div class="chatbot-msg bot">Hello! How can I help you today?</div>
+    </div>
+    <form action="/chat" method="POST" class="chatbot-form">
+        <input name="message" type="text" id="chatbot-input" class="form-control chatbot-search" placeholder="Ask me anything...">
+        <button type="submit" class="btn btn-success">Send</button>
+    </form>
+</div>
+

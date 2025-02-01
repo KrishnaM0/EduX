@@ -22,6 +22,13 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 
+const axios = require("axios");
+// const cors = require("cors");
+
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+
 const initData = require("./init/data");
 const mongoStore = require("connect-mongo");
 
@@ -41,6 +48,9 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.json());  // ✅ Parse JSON requests
+app.use(cors());
+
 
 // Session Configuration
 const sessionOptions = {
@@ -89,6 +99,71 @@ const isLoggedIn = (req, res, next) => {
     }
     next();
 };
+
+
+// Gemini Chatbot Integration : -
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
+
+// Initialize Gemini AI client
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+app.post("/chat", async (req, res) => {
+    try {
+        const userMessage = req.body.message;
+        if (!userMessage) {
+            return res.status(400).json({ reply: "❌ Error: No message provided." });
+        }
+
+        console.log("User Message:", userMessage);
+
+        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+        const result = await model.generateContent(userMessage);
+        const botReply = result.response.text();
+
+        res.json({ reply: botReply });
+    } catch (error) {
+        console.error("Chatbot API Error:", error.message);
+        res.status(500).json({ reply: "❌ Error: Unable to fetch response." });
+    }
+});
+
+
+
+// OpenAI Chatbot Integration : -
+// const OpenAI = require("openai"); // ✅ Correct import
+// const openai = new OpenAI({
+//     apiKey: process.env.OPENAI_API_KEY, // Ensure your API key is set in .env
+// });
+
+// app.post("/chat", async (req, res) => {
+//     try {
+//         const userMessage = req.body.message;
+//         console.log("User Message:", userMessage);
+
+//         if (!userMessage) {
+//             return res.status(400).json({ reply: "❌ Error: No message provided." });
+//         }
+
+//         console.log("Using API Key:", process.env.OPENAI_API_KEY ? "✅ Loaded" : "❌ Not Loaded");
+
+//         // Make request to OpenAI API
+//         const response = await openai.chat.completions.create({
+//             model: "gpt-3.5-turbo",
+//             messages: [{ role: "user", content: userMessage }],
+//         });
+
+//         const botReply = response.choices[0]?.message?.content || "I couldn't understand that.";
+
+//         res.json({ reply: botReply });
+//     } catch (error) {
+//         console.error("Chatbot API Error:", error.response?.data || error.message);
+//         res.status(500).json({ reply: "❌ Error: Unable to fetch response." });
+//     }
+// });
+
 
 app.delete('/shows/:courseId/reviews/:reviewId', async (req, res, next) => {
     let {courseId, reviewId} = req.params;
