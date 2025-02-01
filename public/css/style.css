@@ -480,8 +480,8 @@
     margin-top : 0.5rem;
 }
 .home-page{
-    border-bottom-right-radius: 3rem;
-    border-bottom-left-radius: 3rem;
+    border-bottom-right-radius: 2rem;
+    border-bottom-left-radius: 2rem;
     box-shadow: 0rem 0rem 1rem grey;
 }
 /* Add subtle animation for quiz section load */
