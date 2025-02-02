@@ -22,6 +22,7 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 
+
 const axios = require("axios");
 // const cors = require("cors");
 
@@ -33,7 +34,9 @@ const initData = require("./init/data");
 const mongoStore = require("connect-mongo");
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/Edux");
+const dbUrl = process.env.DBURL;
+mongoose.connect(dbUrl);
+// mongoose.connect(process.env.DBURL || "mongodb://127.0.0.1:27017/Edux");
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -51,17 +54,27 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.json());  // ✅ Parse JSON requests
 app.use(cors());
 
+const store = mongoStore.create({
+    mongoUrl : dbUrl,
+    crypto : {
+        secret : process.env.SECRET,
+    },
+    touchAfter : 24 * 3600,
+});
 
-// Session Configuration
+store.on("error", ()=>{
+    console.log("ERROR IN MONGO SESSION STORE", err);
+});
+
 const sessionOptions = {
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: true,
-    // store: mongoStore.create({ mongoUrl: process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/Edux" }),
-    cookie: {
-        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-        httpOnly: true,
+    store,
+    secret : process.env.SECRET,
+    resave : false,
+    saveUninitialized : true,
+    cookie : {
+        expires : Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge : 7 * 24 * 60 * 60 * 1000,
+        httpOnly : true,
     },
 };
 
