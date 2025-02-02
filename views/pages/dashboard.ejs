@@ -11,14 +11,15 @@
                 <%}else{%>
                     <img src="<%=userImage%>" alt="user-profile-img">
                 <%}%>
-                <h4 style="margin-top: 0.5rem;"><%=currUser.username%></h4>
+                <%if(currUser.firstName && currUser.lastName){%>
+                    <h4 style="margin-top: 0.5rem;"><%=currUser.firstName%> <%=currUser.lastName%></h4>
+                <%}else{%>
+                    <h4 style="margin-top: 0.5rem;"><%=currUser.username%></h4>
+                <%}%>
                 <%if(currUser.about){%>
                     <p><%=currUser.about%></p>
                 <%}%>
                 <div class="user-links">
-                    <%if(currUser.email){%>
-                        <a href="mailto:<%=currUser.email%>"><i class="fa-regular fa-envelope"></i></a>
-                    <%}%>
                     <%if(currUser.linkedinUrl){%>
                         <a href="<%=currUser.linkedinUrl%>">
                             <i class="fa-brands fa-linkedin"></i>
@@ -29,11 +30,14 @@
                             <i class="fa-brands fa-github"></i>
                         </a>
                     <%}%>
-                    <%if(currUser.instaUrl){%>
-                        <a href="<%=currUser.instaUrl%>"><i class="fa-brands fa-whatsapp" style="font-weight: 600;"></i></a>
-                    <%}%>
                     <%if(currUser.phone){%>
                         <a href="https://wa.me/<%=currUser.phone%>"><i class="fa-brands fa-whatsapp" style="font-weight: 600;"></i></a>
+                    <%}%>
+                    <%if(currUser.instaUrl){%>
+                        <a href="<%=currUser.instaUrl%>"><i class="fa-brands fa-instagram" style="font-weight: 600;"></i></a>
+                    <%}%>
+                    <%if(currUser.email){%>
+                        <a href="mailto:<%=currUser.email%>"><i class="fa-regular fa-envelope"></i></a>
                     <%}%>
                 </div>
                 <a href="/dashboard/editProfile" class="btn btn-outline-warning mt-3" style="font-weight: 550;">Edit Profile</a>
