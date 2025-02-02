@@ -55,3 +55,5 @@ EduX is built to enhance **engagement**, **interactivity**, and **efficiency** i
 - **APIs**: REST APIs
 
 ---
+
+Live Link : - https://edux-ad83.onrender.com
