@@ -411,19 +411,65 @@ app.post("/enroll/:courseId", isLoggedIn, async (req, res) => {
     }
 });
 
+
+function calculateProgress(enrolledCourses) {
+    let totalProgress = 0;
+    let completedCourses = 0;
+
+    enrolledCourses.forEach(course => {
+        totalProgress += course.progress;
+        if (course.progress === 100) completedCourses++;
+    });
+
+    return enrolledCourses.length ? (totalProgress / enrolledCourses.length).toFixed(2) : 0;
+}
+
 app.get("/dashboard", isLoggedIn, async (req, res) => {
     try {
+        const curruser = await User.find(req.user._id);
+        const users = await User.find();  // Fetch all users
         const courses = await Courses.find();
-        // Fetch quiz results for the logged-in user
         const quizResult = await QuizResult.find({ user: req.user._id }).populate('course');
         const enrolledCourses = await EnrolledCourse.find({ user: req.user._id }).populate("course");
-        
-        res.render("pages/dashboard", { courses, quizResult, enrolledCourses });
+
+        // Compute progress and number of enrolled courses for each user
+        const updatedUsers = await Promise.all(users.map(async user => {
+            // Fetch enrolled courses for each user (assuming user.enrolledCourses is an array of course IDs)
+            const enrolledUserCourses = await EnrolledCourse.find({ user: user._id }).populate('course');
+            user.courseProgress = calculateProgress(enrolledUserCourses);  // Calculate progress
+            user.enrolledCoursesCount = enrolledUserCourses.length;  // Count enrolled courses
+            return user;
+        }));
+        curruser.courseProgress = calculateProgress(enrolledCourses);  // Calculate the average progress
+        res.render("pages/dashboard", { curruser, courses, quizResult, enrolledCourses, users: updatedUsers });
     } catch (error) {
         console.error("Error fetching dashboard data:", error);
         res.status(500).send("Error loading the dashboard");
     }
 });
+
+// Route to get user dashboard
+app.get("/user/:id", async (req, res) => {
+    try {
+        // Fetch the user by ID from the database
+        const user = await User.findById(req.params.id);
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+
+        // You can fetch additional data related to the user, such as their courses or quiz results
+        const enrolledCourses = await EnrolledCourse.find({ user: user._id }).populate("course");
+        const quizResult = await QuizResult.find({ user: user._id }).populate('course');
+        user.courseProgress = calculateProgress(enrolledCourses);  // Calculate the average progress
+
+        // Render the user's dashboard page
+        res.render("users/userDashboard", { user, enrolledCourses, quizResult });
+    } catch (error) {
+        console.error("Error fetching user dashboard:", error);
+        res.status(500).send("Error loading user dashboard");
+    }
+});
+
 
 // Dashboard - Edit Profile
 app.get("/dashboard/editProfile", (req, res)=>{

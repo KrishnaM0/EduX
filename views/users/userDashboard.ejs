@@ -1,46 +1,45 @@
 <% layout("/layouts/boilerplate") %>
 <body>
     <div class="dashboard-container">
-        <h3 style="text-align:center;"><%=currUser.username%>'s <span style="color: red;">Dashboard</span></h3>
+        <h3 style="text-align:center;"><%=user.username%>'s <span style="color: red;">Dashboard</span></h3>
         <hr>
         <div class="user-enrolled">
             <div class="profile mt-2">
                 <%let userImage = "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?t=st=1729198547~exp=1729199147~hmac=1e8af087514025937e30e22845f9de9a0293b3601d48951740f086cd84548627"%>
-                <%if(currUser.profileImage){%>
-                    <img src="<%=currUser.profileImage%>" alt="user-profile-img">
+                <%if(user.profileImage){%>
+                    <img src="<%=user.profileImage%>" alt="user-profile-img">
                 <%}else{%>
                     <img src="<%=userImage%>" alt="user-profile-img">
                 <%}%>
-                <%if(currUser.firstName && currUser.lastName){%>
-                    <h4 style="margin-top: 0.5rem;"><%=currUser.firstName%> <%=currUser.lastName%></h4>
+                <%if(user.firstName && user.lastName){%>
+                    <h4 style="margin-top: 0.5rem;"><%=user.firstName%> <%=user.lastName%></h4>
                 <%}else{%>
-                    <h4 style="margin-top: 0.5rem;"><%=currUser.username%></h4>
+                    <h4 style="margin-top: 0.5rem;"><%=user.username%></h4>
                 <%}%>
-                <%if(currUser.about){%>
-                    <p><%=currUser.about%></p>
+                <%if(user.about){%>
+                    <p><%=user.about%></p>
                 <%}%>
                 <div class="user-links">
-                    <%if(currUser.linkedinUrl){%>
-                        <a href="<%=currUser.linkedinUrl%>">
+                    <%if(user.linkedinUrl){%>
+                        <a href="<%=user.linkedinUrl%>">
                             <i class="fa-brands fa-linkedin"></i>
                         </a>
                     <%}%>
-                    <%if(currUser.githubUrl){%>
-                        <a href="<%=currUser.githubUrl%>">
+                    <%if(user.githubUrl){%>
+                        <a href="<%=user.githubUrl%>">
                             <i class="fa-brands fa-github"></i>
                         </a>
                     <%}%>
-                    <%if(currUser.phone){%>
-                        <a href="https://wa.me/<%=currUser.phone%>"><i class="fa-brands fa-whatsapp" style="font-weight: 600;"></i></a>
+                    <%if(user.phone){%>
+                        <a href="https://wa.me/<%=user.phone%>"><i class="fa-brands fa-whatsapp" style="font-weight: 600;"></i></a>
                     <%}%>
-                    <%if(currUser.instaUrl){%>
-                        <a href="<%=currUser.instaUrl%>"><i class="fa-brands fa-instagram" style="font-weight: 600;"></i></a>
+                    <%if(user.instaUrl){%>
+                        <a href="<%=user.instaUrl%>"><i class="fa-brands fa-instagram" style="font-weight: 600;"></i></a>
                     <%}%>
-                    <%if(currUser.email){%>
-                        <a href="mailto:<%=currUser.email%>"><i class="fa-regular fa-envelope"></i></a>
+                    <%if(user.email){%>
+                        <a href="mailto:<%=user.email%>"><i class="fa-regular fa-envelope"></i></a>
                     <%}%>
                 </div>
-                <a href="/dashboard/editProfile" class="btn btn-outline-warning mt-3" style="font-weight: 550;">Edit Profile</a>
             </div>
             <hr>
             <div class="enrolled-courses">
@@ -144,55 +143,13 @@
             <h3 style="margin-bottom : 1rem; text-decoration :overline red;">Attendance</h3>
                 <!-- Placeholder for attendance progress bar -->
             <div class="attendance-range" style="display: flex; align-items: center;">
-                <span style="margin-right: 0.5rem;"><%=curruser.courseProgress%>%</span>
+                <span style="margin-right: 0.5rem;"><%=user.courseProgress%>%</span>
                 <div style="flex-grow: 1; background-color: #e0e0e0; height: 1rem; width : 10rem; border-radius: 1rem;">
-                    <div style="width:<%=curruser.courseProgress%>%; background: linear-gradient(to right, #6a00ff, #f200ff); height: 100%; border-radius: 1rem;"></div>
+                    <div style="width: <%=user.courseProgress%>%; background: linear-gradient(to right, #6a00ff, #f200ff); height: 100%; border-radius: 1rem;"></div>
                 </div>
             </div>
         </div>
-    </div>
-    <hr>
-    <div class="dashboard-leaderboard">
-        <br>
-        <h3 style="text-align:center; text-decoration:overline red;">Leaderboard</h3>
-        <br>
-        <div class="leaderboard-container">
-            <% users.forEach(user => { %>
-                <div class="leaderboard-card">
-                    <% let userImage = user.profileImage || "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg"; %>
-                    <img src="<%= userImage %>" alt="<%= user.username %>'s profile" class="leaderboard-img">
-                    <h4><a href="/user/<%=user._id%>"><%= user.username %></a></h4>
-                    <div class="user-stats">
-                        <p><strong>Progress:</strong> <%= user.courseProgress %>%</p>
-                        <p><strong>Courses Enrolled:</strong> <%= user.enrolledCoursesCount %></p>
-                    </div>
-                    <div class="user-links">
-                        <%if(user.linkedinUrl){%>
-                            <a href="<%=user.linkedinUrl%>" target="_blank">
-                                <i class="fa-brands fa-linkedin"></i>
-                            </a>
-                        <%}%>
-                        <%if(user.githubUrl){%>
-                            <a href="<%=user.githubUrl%>" target="_blank">
-                                <i class="fa-brands fa-github"></i>
-                            </a>
-                        <%}%>
-                        <%if(user.phone){%>
-                            <a href="https://wa.me/<%=user.phone%>" target="_blank"><i class="fa-brands fa-whatsapp" style="font-weight: 600;"></i></a>
-                        <%}%>
-                        <%if(user.instaUrl){%>
-                            <a href="<%=user.instaUrl%>" target="_blank"><i class="fa-brands fa-instagram" style="font-weight: 600;"></i></a>
-                        <%}%>
-                        <%if(user.email){%>
-                            <a href="mailto:<%=user.email%>" target="_blank"><i class="fa-regular fa-envelope"></i></a>
-                        <%}%>
-                    </div>
-                </div>
-            <% }); %>
-        </div>
-        <br>
-    </div>
-    
+    </div>    
     <br><br><br><br>
     <%-include("../includes/footer.ejs")%>
 </body>
