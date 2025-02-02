@@ -708,10 +708,11 @@ footer {
         display: none;
     }
     .contact{
-        width: 80% !important;
+        width: 90% !important;
         padding-right: 0.5rem;
         padding-left : 0.5rem;
-        
+        margin-left: 0;
+        margin-right: 0;
     }
     .connect{
         padding-left: 0rem;
@@ -735,6 +736,17 @@ footer {
     
     .shows-chapters.show-chapters {
         display: block;
+    }
+    .nav-link{
+        padding : 0.5rem 3rem 0.5rem 3rem !important;
+        border : none;
+        border-radius: 1rem !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+        text-align: center;
+    }
+    .nav-link:hover{
+        background-color: rgba(252, 8, 24, 0.2) !important;
     }
 }
   
@@ -803,5 +815,16 @@ footer {
         right: 1rem !important;
         width: 90% !important;
         margin: auto !important;
+    }
+    .nav-link{
+        padding : 0.5rem 2rem 0.5rem 2rem !important;
+        border : none;
+        border-radius: 1rem !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+        text-align: center;
+    }
+    .nav-link:hover{
+        background-color: rgba(252, 8, 24, 0.2) !important;
     }
 }
