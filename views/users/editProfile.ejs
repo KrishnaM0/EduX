@@ -1,0 +1,55 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <form action="/dashboard/editProfile?_method=PUT" method = "POST">
+        <div class = "login-container">
+            <h3 style="margin-bottom:1rem;">Edit Your<span style="color: red;"> Profile</span></span></h2>
+            <hr>
+            <div class = "mb-3">
+                <label for="username" class = "form-label">Username</label>
+                <input name = "username" value="<%=currUser.username%>" id = "username" class = "form-control" type="text" placeholder="username" disabled required>
+            </div>
+            <div class = "mb-3">
+                <label for="email" class = "form-label">Email</label>
+                <input name = "email" value="<%=currUser.email%>" id = "email" class = "form-control" type="email" placeholder = "email" disabled required>
+            </div>
+            <div class = "mb-3">
+                <label for="firstName" class = "form-label">First Name</label>
+                <input name = "firstName" value="<%=currUser.firstName%>" id = "firstName" class = "form-control" type="text" placeholder="firstname">
+            </div>
+            <div class = "mb-3">
+                <label for="lastName" class = "form-label">Last Name</label>
+                <input name = "lastName" value="<%=currUser.lastName%>" id = "lastName" class = "form-control" type="text" placeholder="lastname">
+            </div>
+            <div class = "mb-3">
+                <label for="profileImage" class = "form-label">Profile Image URL</label>
+                <input name = "profileImage" value="<%=currUser.profileImage%>" id = "profileImage" class = "form-control" type="text" placeholder = "Enter URL">
+            </div>
+            <div class = "mb-3">
+                <label for="about" class = "form-label">About</label>
+                <input name = "about" value="<%=currUser.about%>" id = "about" class = "form-control" type="text" placeholder = "About yourself">
+            </div>
+            <div class = "mb-3">
+                <label for="mobileNumber" class = "form-label">Mobile Number</label>
+                <input name = "phone" value=<%=currUser.phone%> || '' id = "mobileNumber" class = "form-control" type="number" placeholder="+91 00000 00000">
+            </div>
+
+            <div class = "mb-3">
+                <label for="linkedinUrl" class = "form-label">Linkedin URL</label>
+                <input name = "linkedinUrl" value="<%=currUser.linkedinUrl%>" id = "linkedinUrl" class = "form-control" type="text" placeholder = "Linkedin link">
+            </div>
+            <div class = "mb-3">
+                <label for="githubUrl" class = "form-label">Github URL</label>
+                <input name = "githubUrl" value="<%=currUser.githubUrl%>" id = "githubUrl" class = "form-control" type="text" placeholder = "Github link">
+            </div>
+            <div class = "mb-3">
+                <label for="instaUrl" class = "form-label">Instagram URL</label>
+                <input name = "instaUrl" value="<%=currUser.instaUrl%>" id = "instaUrl" class = "form-control" type="text" placeholder = "Instagram link">
+            </div>
+
+            <div class = "login-btn">
+                <button type="submit" class="btn btn-success" style="margin-left: 0;">Save</button>
+                <a href="/dashboard" class = "skipLogin">Skip</a>
+            </div>
+        </div>
+    </form>
+</body>

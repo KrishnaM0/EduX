@@ -218,13 +218,7 @@
 .nav-link.active i.fa-user {
     color: #ff4500;
 }
-.user-links .fa-linkedin:hover{
-    color : #095f8d;
 
-}
-.user-links .fa-github:hover{
-    color :#8134AF;
-}
 .connect{
     display: flex;
     justify-content: center;
@@ -336,7 +330,6 @@
 }
 .shows-quiz-section{
     padding: 0.5rem;
-    margin: 0.5em;
 }
 .shows-quiz{
     padding: 1rem;
@@ -637,6 +630,19 @@ footer {
     border-radius: 1rem;
     /* box-shadow: 0rem 0rem 0.7rem rgba(40, 39, 39, 0.5); */
 }
+/* .user-links .fa-linkedin:hover{
+    color : #095f8d;
+
+}
+.user-links .fa-github:hover{
+    color :#8134AF;
+} */
+.user-links a i:hover{
+    transform: scale(1.2);
+    /* color: #38bdf8; */
+    color :#8134AF;
+}
+
 
 /* Rotation Animation */
 @keyframes rotateX {
@@ -728,6 +734,15 @@ footer {
 }
   
 @media (max-width: 730px) {
+    .shows-chapters-nav h5{
+        font-size: 1rem;
+    }
+    .shows-container{
+        width: 100%;
+    }
+    .shows-content{
+        width: 100%;
+    }
     iframe{
         width: 100% !important;
         height : 15rem !important;
@@ -737,9 +752,17 @@ footer {
     }
     .shows-quiz-section{
         width: 100%;
+        margin: auto;
     }
     .shows-quiz{
         width: 100%;
+        margin: auto;
+        /* padding: 1rem; */
+    }
+    .shows-quiz h5{
+        /* padding-left: 0.5rem;
+        padding-right: 0.5rem; */
+        font-size: 1rem;
     }
     .shows-chapter-img{
         width: 100%;
@@ -766,5 +789,14 @@ footer {
     .dashboards-card-img{
         border-top-right-radius: 0.3rem !important;
         border-bottom-left-radius: 0rem !important;
+    }
+    .chatbot {
+        bottom: 1rem !important;
+        right: 1rem !important;
+    }
+    .chatbot-div {
+        right: 1rem !important;
+        width: 90% !important;
+        margin: auto !important;
     }
 }

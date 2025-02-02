@@ -1,18 +1,42 @@
 <% layout("/layouts/boilerplate") %>
 <body>
     <div class="dashboard-container">
+        <h3 style="text-align:center;"><%=currUser.username%>'s <span style="color: red;">Dashboard</span></h3>
+        <hr>
         <div class="user-enrolled">
             <div class="profile mt-2">
-                <img src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?t=st=1729198547~exp=1729199147~hmac=1e8af087514025937e30e22845f9de9a0293b3601d48951740f086cd84548627" alt="user-profile">
+                <%let userImage = "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?t=st=1729198547~exp=1729199147~hmac=1e8af087514025937e30e22845f9de9a0293b3601d48951740f086cd84548627"%>
+                <%if(currUser.profileImage){%>
+                    <img src="<%=currUser.profileImage%>" alt="user-profile-img">
+                <%}else{%>
+                    <img src="<%=userImage%>" alt="user-profile-img">
+                <%}%>
                 <h4 style="margin-top: 0.5rem;"><%=currUser.username%></h4>
+                <%if(currUser.about){%>
+                    <p><%=currUser.about%></p>
+                <%}%>
                 <div class="user-links">
-                    <a href="https://www.linkedin.com/in/krishna-muskawad/">
-                        <i class="fa-brands fa-linkedin"></i>
-                    </a>
-                    <a href="https://github.com/KrishnaM0">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
+                    <%if(currUser.email){%>
+                        <a href="mailto:<%=currUser.email%>"><i class="fa-regular fa-envelope"></i></a>
+                    <%}%>
+                    <%if(currUser.linkedinUrl){%>
+                        <a href="<%=currUser.linkedinUrl%>">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                    <%}%>
+                    <%if(currUser.githubUrl){%>
+                        <a href="<%=currUser.githubUrl%>">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                    <%}%>
+                    <%if(currUser.instaUrl){%>
+                        <a href="<%=currUser.instaUrl%>"><i class="fa-brands fa-whatsapp" style="font-weight: 600;"></i></a>
+                    <%}%>
+                    <%if(currUser.phone){%>
+                        <a href="https://wa.me/<%=currUser.phone%>"><i class="fa-brands fa-whatsapp" style="font-weight: 600;"></i></a>
+                    <%}%>
                 </div>
+                <a href="/dashboard/editProfile" class="btn btn-outline-warning mt-3" style="font-weight: 550;">Edit Profile</a>
             </div>
             <hr>
             <div class="enrolled-courses">

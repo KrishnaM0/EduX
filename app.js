@@ -191,9 +191,9 @@ app.get("/signup", (req, res) => {
 });
 
 app.post("/signup", async (req, res, next) => {
-    const { username, email, password, phone } = req.body;
+    const { username, email, password } = req.body;
     try {
-        const newUser = new User({ username, email, phone });
+        const newUser = new User({ username, email });
         const registeredUser = await User.register(newUser, password);
         req.login(registeredUser, (err) => {
             if (err) return next(err);
@@ -423,6 +423,28 @@ app.get("/dashboard", isLoggedIn, async (req, res) => {
         console.error("Error fetching dashboard data:", error);
         res.status(500).send("Error loading the dashboard");
     }
+});
+
+// Dashboard - Edit Profile
+app.get("/dashboard/editProfile", (req, res)=>{
+    res.render("users/editProfile");
+});
+app.put("/dashboard/editProfile", async(req, res)=>{
+    let {firstName, lastName, phone, about, profileImage, linkedinUrl, githubUrl, instaUrl} = req.body;
+    await User.updateOne({username : req.user.username}, {$set :
+        {
+            firstName,
+            lastName,
+            phone,
+            about,
+            profileImage,
+            linkedinUrl, 
+            githubUrl, 
+            instaUrl,
+        },
+    });
+    req.flash("success", "Profile is updated..!");
+    res.redirect("/dashboard");
 });
 
 
