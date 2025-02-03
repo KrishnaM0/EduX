@@ -754,6 +754,11 @@ footer {
     align-items: center !important;
     justify-content: center !important;
 }
+.reviewCard{
+    width: 20rem;
+    display: flex;
+    justify-content: center;
+}
 
 
 /* Responsive Design */
