@@ -291,7 +291,7 @@
 }
 
 .shows-chapter-img{
-    width: 700px;
+    width: 100%;
     height: 320px;
     border-radius: 1rem;
 }
@@ -755,10 +755,12 @@ footer {
     align-items: center !important;
     justify-content: center !important;
 }
+
+.overview{
+   width: 100%;
+}
 .reviewCard{
-    width: 20rem;
-    display: flex;
-    justify-content: center;
+    width: 90%;
 }
 
 
