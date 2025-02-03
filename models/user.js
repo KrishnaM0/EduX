@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
     linkedinUrl : {type : String},
     githubUrl : {type : String},
     instaUrl : {type : String},
+    dob : {type : String},
 });
 
 userSchema.plugin(passportLocalMongoose); // Adds username, password, and authentication features

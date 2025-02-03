@@ -489,7 +489,7 @@ app.get("/dashboard/editProfile", (req, res)=>{
     res.render("users/editProfile");
 });
 app.put("/dashboard/editProfile", async(req, res)=>{
-    let {firstName, lastName, phone, about, profileImage, linkedinUrl, githubUrl, instaUrl} = req.body;
+    let {firstName, lastName, phone, about, profileImage, linkedinUrl, githubUrl, instaUrl, dob} = req.body;
     await User.updateOne({username : req.user.username}, {$set :
         {
             firstName,
@@ -500,6 +500,7 @@ app.put("/dashboard/editProfile", async(req, res)=>{
             linkedinUrl, 
             githubUrl, 
             instaUrl,
+            dob,
         },
     });
     req.flash("success", "Profile is updated..!");
