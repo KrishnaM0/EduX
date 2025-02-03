@@ -610,7 +610,7 @@ footer {
     text-align: center;
 }
 .attendance-range{
-    width: 50%;
+    width: 70%;
     margin: auto;
 }
 .quiz-result-range-div{
@@ -749,7 +749,11 @@ footer {
 .user-links a:hover {
     color: #ff6f61;
 }
-
+.dashboards-profile-btns{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
 
 
 /* Responsive Design */
@@ -960,5 +964,14 @@ footer {
     }
     .nav-link:hover{
         background-color: rgba(252, 8, 24, 0.2) !important;
+    }
+    .dashboard-attendance{
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .attendance-range{
+        width: 90%;
     }
 }

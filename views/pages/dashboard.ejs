@@ -40,7 +40,10 @@
                         <a href="mailto:<%=currUser.email%>"><i class="fa-regular fa-envelope"></i></a>
                     <%}%>
                 </div>
-                <a href="/dashboard/editProfile" class="btn btn-outline-warning mt-3" style="font-weight: 550;">Edit Profile</a>
+                <div class="dashboards-profile-btns">
+                    <a href="/dashboard/editProfile" class="btn btn-outline-warning mt-3" style="margin-right:0.5rem;font-weight: 550;">Edit Profile</a>
+                    <button class="btn btn-outline-danger mt-3" style="font-weight: 550; margin-left:0.5rem;">Delete Account</button>
+                </div>
             </div>
             <hr>
             <div class="enrolled-courses">
