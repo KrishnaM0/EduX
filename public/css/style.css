@@ -262,6 +262,7 @@
     background-color:#f8f9fa;
     right : 0rem;
     z-index: 10000;
+    display: none;
 }
 .userAccess a{
     text-decoration: none;

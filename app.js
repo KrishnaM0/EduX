@@ -508,6 +508,37 @@ app.put("/dashboard/editProfile", async(req, res)=>{
 });
 
 
+// ✅ DELETE route for account deletion
+app.delete("/deleteAccount", async (req, res) => {
+    try {
+        if (!req.isAuthenticated()) {
+            req.flash("error", "You must be logged in to delete your account.");
+            return res.redirect("/login");
+        }
+
+        const userId = req.user._id;
+
+        // Delete user from database
+        await User.findByIdAndDelete(userId);
+
+        // Logout the user and destroy session
+        req.logout(() => {
+            req.session.destroy((err) => {
+                if (err) {
+                    return res.redirect("/dashboard");
+                }
+            });
+        });
+        req.flash("success", "Your Account is Deleted..!");
+        res.redirect("/");
+    } catch (error) {
+        console.error("Error deleting user:", error);
+        req.flash("error", "Error deleting account.");
+        res.redirect("/dashboard");
+    }
+});
+
+
 // Contact form handling
 app.get("/contact", (req, res) => {
     res.render("pages/contact");
