@@ -19,6 +19,17 @@
                 <%if(currUser.about){%>
                     <p><%=currUser.about%></p>
                 <%}%>
+                <!-- <% 
+                    const lastOnline = new Date(currUser.online).toLocaleString("en-US", { 
+                    weekday: "short", 
+                    year: "numeric", 
+                    month: "short", 
+                    day: "numeric", 
+                    hour: "2-digit", 
+                    minute: "2-digit" 
+                    }).replace(/, /g, " / "); 
+                %>
+                <p><small>Last Accessed : <%=lastOnline%></small></p> -->
                 <div class="user-links">
                     <%if(currUser.linkedinUrl){%>
                         <a href="<%=currUser.linkedinUrl%>">
@@ -41,9 +52,9 @@
                     <%}%>
                 </div>
                 <div class="dashboards-profile-btns">
-                    <a href="/dashboard/editProfile" class="btn btn-outline-warning mt-3" style="margin-right:0.5rem;font-weight: 550;">Edit Profile</a>
+                    <a href="/dashboard/editProfile" class="btn btn-warning mt-3" style="margin-right:0.5rem;margin-left:0.5rem;font-weight: 550;">Edit Profile</a>
                     <form action="/deleteAccount?_method=DELETE" method="POST" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
-                        <button type="submit" class="btn btn-outline-danger mt-3" style="font-weight: 550; margin-left:0.5rem;">Delete Account</button>
+                        <button type="submit" class="btn btn-outline-danger mt-3" style="font-weight: 550; margin-right:0.5rem;margin-left:0.5rem;">Delete Account</button>
                     </form>                    
                 </div>
             </div>
