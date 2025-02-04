@@ -1,4 +1,3 @@
-
 .navbar{
     height : 5rem;
     background-color: white;
@@ -268,7 +267,6 @@
     text-decoration: none;
     color : black;
     font-weight: 500;
-    /* display: block; */
 }
 .userAccess a:hover{
     color :red;
@@ -287,12 +285,12 @@
 }
 .shows-content{
     padding: 1rem;
-    display: flexbox;
+    display: flex;
 }
 
 .shows-chapter-img{
-    width: 100%;
-    height: 320px;
+    /* width: 100% !important; */
+    height: 20rem;
     border-radius: 1rem;
 }
 .shows-chapters p{
@@ -920,16 +918,13 @@ footer {
     .shows-quiz{
         width: 100%;
         margin: auto;
-        /* padding: 1rem; */
     }
     .shows-quiz h5{
-        /* padding-left: 0.5rem;
-        padding-right: 0.5rem; */
         font-size: 1rem;
     }
     .shows-chapter-img{
-        width: 100%;
-        height : 15rem;
+        width: 100% !important;
+        height : 14rem !important;
     }
     .reviewCard{
         width : 90%;
