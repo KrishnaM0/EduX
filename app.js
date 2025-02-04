@@ -508,7 +508,7 @@ app.put("/dashboard/editProfile", async(req, res)=>{
 });
 
 
-// ✅ DELETE route for account deletion
+// 
 app.delete("/deleteAccount", async (req, res) => {
     try {
         if (!req.isAuthenticated()) {
@@ -518,25 +518,71 @@ app.delete("/deleteAccount", async (req, res) => {
 
         const userId = req.user._id;
 
-        // Delete user from database
-        await User.findByIdAndDelete(userId);
+        // ✅ Delete all user-related data in parallel
+        await Promise.all([
+            Review.deleteMany({ author: userId }),
+            Courses.updateMany({}, { $pull: { reviews: userId } }),
+            EnrolledCourse.deleteMany({ user: userId }),
+            QuizResult.deleteMany({ user: userId }),
+            Notes.deleteMany({ user: userId }),
+            User.findByIdAndDelete(userId)
+        ]);
 
-        // Logout the user and destroy session
-        req.logout(() => {
-            req.session.destroy((err) => {
-                if (err) {
-                    return res.redirect("/dashboard");
-                }
+        // ✅ First set flash message BEFORE destroying session
+        req.flash("success", "Your account and all associated data have been deleted.");
+
+        // ✅ Logout the user properly (Passport 0.6+ requires a callback)
+        req.logout(function (err) {
+            if (err) {
+                console.error("Logout error:", err);
+                return res.redirect("/dashboard");
+            }
+
+            // ✅ Destroy session AFTER setting flash message
+            req.session.destroy(() => {
+                res.redirect("/");
             });
         });
-        req.flash("success", "Your Account is Deleted..!");
-        res.redirect("/");
+
     } catch (error) {
         console.error("Error deleting user:", error);
         req.flash("error", "Error deleting account.");
         res.redirect("/dashboard");
     }
 });
+
+// 
+
+
+// ✅ DELETE route for account deletion
+// app.delete("/deleteAccount", async (req, res) => {
+//     try {
+//         if (!req.isAuthenticated()) {
+//             req.flash("error", "You must be logged in to delete your account.");
+//             return res.redirect("/login");
+//         }
+
+//         const userId = req.user._id;
+
+//         // Delete user from database
+//         await User.findByIdAndDelete(userId);
+
+//         // Logout the user and destroy session
+//         req.logout(() => {
+//             req.session.destroy((err) => {
+//                 if (err) {
+//                     return res.redirect("/dashboard");
+//                 }
+//             });
+//         });
+//         req.flash("success", "Your Account is Deleted..!");
+//         res.redirect("/");
+//     } catch (error) {
+//         console.error("Error deleting user:", error);
+//         req.flash("error", "Error deleting account.");
+//         res.redirect("/dashboard");
+//     }
+// });
 
 
 // Contact form handling

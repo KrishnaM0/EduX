@@ -85,7 +85,7 @@
                                     <label for="comment" class = "form-label"><b style="opacity: 0.9;">Comment</b></label>
                                     <textarea class = "form-control" name="review[comment]" id="comment" rows="5" cols="30" placeholder="Enter your comment here..!" required></textarea>
                                 </div>
-                                <button class = "btn btn-outline-dark">Submit</button>
+                                <button class = "btn btn-outline-dark" style="font-weight: 550;">Submit</button>
                             </form>
                         </div>
                         <hr>
@@ -104,7 +104,7 @@
                                             <%if(currUser){%>
                                                 <%if(review.author._id.equals(currUser._id)){%>
                                                     <form class = "mb-3" action="/shows/<%=course._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
-                                                        <button class = "btn btn-sm btn-dark"><i class="fa-solid fa-trash"></i></button>
+                                                        <button class = "btn btn-sm btn-dark" style="font-weight: 550;"> <i class="fa-solid fa-trash"> </i></button>
                                                     </form>
                                                 <%}%>
                                             <%}%>
