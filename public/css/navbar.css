@@ -1,0 +1,87 @@
+/* Navbar with bottom shadow */
+.navbar {
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.15); /* Smooth shadow */
+    transition: all 0.3s ease-in-out;
+    background: white; /* Ensures shadow is visible */
+  }
+  
+  /* Stronger shadow on scroll */
+  .navbar.scrolled {
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Sidebar Custom Styles */
+  .custom-sidebar {
+    backdrop-filter: blur(8px); /* Soft frosted glass effect */
+    width: 280px; /* Fixed width for better responsiveness */
+    max-width: 80vw; /* Ensures it doesn’t take up full screen */
+    color: white;
+    transition: transform 0.4s ease-in-out;
+  }
+  
+  /* Sidebar Header */
+  .custom-sidebar .offcanvas-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Sidebar links */
+  .custom-sidebar .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.9); /* Better contrast */
+    font-size: 18px;
+    padding: 12px 20px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Sidebar link hover effect */
+  .custom-sidebar .navbar-nav .nav-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding-left: 25px; /* Slight movement on hover */
+    transform: scale(1.05);
+  }
+  
+  /* Sidebar Icon Style */
+  .custom-sidebar .navbar-nav .nav-link i {
+    font-size: 20px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .custom-sidebar .navbar-nav .nav-link:hover i {
+    transform: rotate(10deg);
+  }
+  
+  /* Close Button Effect */
+  .custom-close-btn {
+    color: white;
+    font-size: 24px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .custom-close-btn:hover {
+    transform: rotate(180deg);
+    color: #ff4b2b;
+  }
+  
+  /* Navbar brand styling */
+  .edu-color {
+    color: black;
+  }
+  
+  /* Responsive improvements */
+  @media (max-width: 768px) {
+    .custom-sidebar {
+      width: 100vw; /* Full width for small screens */
+      max-width: 100vw;
+    }
+  }
+  
+  /* Smooth Navbar Scroll Effect */
+  .navbar.sticky-top {
+    transition: all 0.3s ease-in-out;
+  }
+  
