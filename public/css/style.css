@@ -759,7 +759,9 @@ footer {
 .reviewCard{
     width: 90%;
 }
-
+.user-dashboard-access:hover{
+    color: #0056b3 !important;
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {

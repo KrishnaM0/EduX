@@ -1,9 +1,12 @@
 <div class = "userAccess">
     <%if(currUser){%>
         <!-- <a href="/dashboard" class = "signup"><%=currUser.username%></a> -->
-        <a href="/dashboard" class = "signup">Dashboard</a>
+        <div>
+            <img style="height: 5rem;width:5rem;" src="<%=currUser.profileImage%>" alt="user-profile-img">
+        </div>
+        <a href="/dashboard" class = "user-dashboard-access"><h5><%=currUser.username%></h5></a>
         <hr>
-        <a href="/logout" class = "signup">Logout</a>
+        <a href="/logout" class = "signup" style="color:red;">Logout</a>
     <%}else{%>
         <a href="/login" class = "signin">Login</a>
         <hr>
