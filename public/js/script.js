@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const loginLink = document.querySelector('.fa-user');
     const getUser = document.querySelector(".getUser");
     const userAccess = document.querySelector(".userAccess");
+    const todoBtn = document.querySelector(".your-todo-btn");
+    const todoPage= document.querySelector(".todo-page");
+    const closeTodo = document.querySelector(".close-todo");
 
     getUser.addEventListener("click", ()=>{
         if(userAccess.style.display === "none"){
@@ -38,5 +41,20 @@ document.addEventListener("DOMContentLoaded", () => {
     loginLink.addEventListener('click', function() {
         navLinks.forEach(link => link.classList.remove('active'));
         this.classList.add('active'); 
+    });
+
+
+    todoPage.style.display = "none";
+    todoBtn.addEventListener("click", ()=>{
+        if(todoPage.style.display === "none"){
+            todoPage.style.display = "block";
+        }
+        else{
+            todoPage.style.display = "none";
+        }
+    });
+
+    closeTodo.addEventListener("click", ()=>{
+        todoPage.style.display = "none";
     });
 });

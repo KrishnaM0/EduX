@@ -16,6 +16,7 @@ const Review = require("./models/review");
 const Notes = require("./models/notes");
 const User = require("./models/user");
 const EnrolledCourse = require("./models/enrolled");
+const Todo = require("./models/todo");
 
 const session = require("express-session");
 const flash = require("connect-flash");
@@ -439,11 +440,14 @@ function calculateProgress(enrolledCourses) {
 
 app.get("/dashboard", isLoggedIn, async (req, res) => {
     try {
+        // await Todo.deleteMany({});
         const curruser = await User.find(req.user._id);
         const users = await User.find();  // Fetch all users
         const courses = await Courses.find();
         const quizResult = await QuizResult.find({ user: req.user._id }).populate('course');
         const enrolledCourses = await EnrolledCourse.find({ user: req.user._id }).populate("course");
+        const todo = await Todo.find({user:req.user._id, status : "pending"});
+        const todoDone = await Todo.find({user:req.user._id, status : "done"});
 
         // Compute progress and number of enrolled courses for each user
         const updatedUsers = await Promise.all(users.map(async user => {
@@ -454,7 +458,7 @@ app.get("/dashboard", isLoggedIn, async (req, res) => {
             return user;
         }));
         curruser.courseProgress = calculateProgress(enrolledCourses);  // Calculate the average progress
-        res.render("pages/dashboard", { curruser, courses, quizResult, enrolledCourses, users: updatedUsers });
+        res.render("pages/dashboard", { curruser, courses, quizResult, todo, todoDone, enrolledCourses, users: updatedUsers });
     } catch (error) {
         console.error("Error fetching dashboard data:", error);
         res.status(500).send("Error loading the dashboard");
@@ -585,6 +589,54 @@ app.post("/contact", async (req, res) => {
         res.status(500).send("There was an error sending your message. Please try again later.");
     }
 });
+
+// todo application
+// Route to Add New Task
+app.post("/todo/newtask", async (req, res) => {
+    try {
+        // await Todo.deleteMany({});
+        if (!req.user) {
+            return res.status(401).send("Unauthorized: Please log in"); // Prevent saving without a user
+        }
+        const { task } = req.body;
+        const newTask = new Todo({
+            user: req.user._id, // Store user ID instead of entire user object
+            task: task,
+            status : "pending",
+        });
+        await newTask.save();
+        res.redirect("/dashboard");
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error adding task");
+    }
+});
+
+
+// delete and mark as done todo tasks
+// Update Task Status
+app.put("/todo/update/:id", async (req, res) => {
+    try {
+        const { status } = req.body;
+        await Todo.findByIdAndUpdate(req.params.id, { status });
+        res.status(200).send("Task updated successfully!");
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error updating task!");
+    }
+});
+
+// Delete Task
+app.delete("/todo/delete/:id", async (req, res) => {
+    try {
+        await Todo.findByIdAndDelete(req.params.id);
+        res.status(200).send("Task deleted successfully!");
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error deleting task!");
+    }
+});
+
 
 // Server Listener
 app.listen(8080, () => {

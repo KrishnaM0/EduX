@@ -51,12 +51,73 @@
                         <a href="mailto:<%=currUser.email%>"><i class="fa-regular fa-envelope"></i></a>
                     <%}%>
                 </div>
+
+                <button class="btn btn-primary your-todo-btn mt-3" style="margin-right:0.5rem;margin-left:0.5rem;font-weight: 550;">Your To-Do</button>
+                <a href="/dashboard/editProfile" class="btn btn-warning mt-3" style="margin-right:0.5rem;margin-left:0.5rem;font-weight: 550;">Edit Profile</a>
+
                 <div class="dashboards-profile-btns">
-                    <a href="/dashboard/editProfile" class="btn btn-warning mt-3" style="margin-right:0.5rem;margin-left:0.5rem;font-weight: 550;">Edit Profile</a>
                     <form action="/deleteAccount?_method=DELETE" method="POST" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
-                        <button type="submit" class="btn btn-outline-danger mt-3" style="font-weight: 550; margin-right:0.5rem;margin-left:0.5rem;">Delete Account</button>
+                        <button type="submit" class="btn btn-outline-danger mt-3 delete-Account-btn" style="font-weight: 550; margin-right:0.5rem;margin-left:0.5rem;">Delete Account</button>
                     </form>                    
                 </div>
+
+
+                <div class="todo-page">
+                    <div class="todo-title">
+                        <h3>To-Do Application</h3>
+                        <button class="close-todo">X</button>
+                    </div>
+                    <hr>
+                
+                    <!-- Loop through todo tasks and display them -->
+                    <div class="todo-tasks-listing">
+                        <h5>Pending Tasks</h5>
+                        <hr>
+                        <% todo.forEach(task => { %>
+                            <div class="todo-item" style="position: relative;">
+                                <p style="margin: 0;"><%= task.task %></p>
+                                <button class="todo-task-bar" onclick="toggleTaskMenu('<%= task._id %>')">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </button>
+                
+                                <!-- Task Action Menu -->
+                                <div class="task-menu" id="task-menu-<%= task._id %>">
+                                    <button onclick="updateTaskStatus('<%= task._id %>', 'done')">✅ Mark as Done</button>
+                                    <button onclick="deleteTask('<%= task._id %>')">🗑️ Delete</button>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                    <br>
+                    <div class="todo-tasks-listing">
+                        <h5>Completed Tasks</h5>
+                        <hr>
+                        <% todoDone.forEach(task => { %>
+                            <div class="todo-item" style="position: relative;">
+                                <p style="margin: 0;"><%= task.task %></p>
+                                <button class="todo-task-bar" onclick="toggleTaskMenu('<%= task._id %>')">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </button>
+                
+                                <!-- Task Action Menu -->
+                                <div class="task-menu" id="task-menu-<%= task._id %>">
+                                    <button onclick="updateTaskStatus('<%= task._id %>', 'pending')">❌ Undo</button>
+                                    <button onclick="deleteTask('<%= task._id %>')">🗑️ Delete</button>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                
+                    <div class="todo-input-task">
+                        <form action="/todo/newtask" method="post">
+                            <input name="task" type="text" class="form-control" placeholder="Enter your new task!" required>
+                            <button class="btn btn-dark submit" style="margin-left: 0.4rem; font-weight:550;font-size:1.2rem;">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
             </div>
             <hr>
             <div class="enrolled-courses">
