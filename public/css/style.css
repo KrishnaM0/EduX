@@ -783,7 +783,10 @@ footer {
 .todo-input-task form {
     display: flex;
     margin: 1rem;
-    margin-top: 2rem;
+    width: 100%;
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 /* Ensures tasks are listed one below the other */

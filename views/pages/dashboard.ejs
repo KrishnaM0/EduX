@@ -68,7 +68,14 @@
                         <button class="close-todo">X</button>
                     </div>
                     <hr>
-                
+                    <div class="todo-input-task">
+                        <form action="/todo/newtask" method="post">
+                            <input name="task" type="text" class="form-control" placeholder="Enter your new task!" required>
+                            <button class="btn btn-dark submit" style="margin-left: 0.4rem; font-weight:550;font-size:1.2rem;">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </form>
+                    </div>
                     <!-- Loop through todo tasks and display them -->
                     <div class="todo-tasks-listing">
                         <h5>Pending Tasks</h5>
@@ -106,15 +113,6 @@
                                 </div>
                             </div>
                         <% }) %>
-                    </div>
-                
-                    <div class="todo-input-task">
-                        <form action="/todo/newtask" method="post">
-                            <input name="task" type="text" class="form-control" placeholder="Enter your new task!" required>
-                            <button class="btn btn-dark submit" style="margin-left: 0.4rem; font-weight:550;font-size:1.2rem;">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </form>
                     </div>
                 </div>
                 
