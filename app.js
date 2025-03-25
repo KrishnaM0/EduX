@@ -132,7 +132,7 @@ app.post("/chat", async (req, res) => {
 
         console.log("User Message:", userMessage);
 
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         const result = await model.generateContent(userMessage);
         const botReply = result.response.text();
