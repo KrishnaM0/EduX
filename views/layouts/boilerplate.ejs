@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="/css/navbar.css">
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
     <link rel="icon" href="/images/logo.png">
+
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1d3557" />
+    <link rel="apple-touch-icon" href="/images/logo.png" />
+
 </head>
 <body> 
     <%- include("../includes/navbar.ejs") %>
@@ -25,5 +30,13 @@
     <script src="/js/shows.js"></script>
     <script src="/js/chatbot.js"></script>
     <script src="/js/todo.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/sw.js')
+            .then(() => console.log("✅ Service Worker registered"))
+            .catch(err => console.error("Service Worker error:", err));
+        }
+    </script>      
 </body>
 </html>

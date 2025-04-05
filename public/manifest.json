@@ -1,0 +1,21 @@
+{
+    "name": "EduX - Smart E-learning",
+    "short_name": "EduX",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#1d3557",
+    "icons": [
+      {
+        "src": "/images/logo.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/images/logo.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  
