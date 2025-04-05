@@ -30,10 +30,11 @@
     <script src="/js/shows.js"></script>
     <script src="/js/chatbot.js"></script>
     <script src="/js/todo.js"></script>
+    <script src="/js/installApp.js"></script>
 
     <script>
         if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('/sw.js')
+            navigator.serviceWorker.register('/sw.js', { scope: '/' })
             .then(() => console.log("✅ Service Worker registered"))
             .catch(err => console.error("Service Worker error:", err));
         }
